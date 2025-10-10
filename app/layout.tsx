@@ -16,9 +16,8 @@ const lato = Lato({
 });
 
 export const metadata = {
-  title: "My Portfolio",
-  description:
-    "Minimalist one-page portfolio built with Next.js + Tailwind CSS",
+  title: "Lance Kian Flores | Portfolio",
+  description: "Portfolio of Lance Kian Flores",
 };
 
 export default function RootLayout({
