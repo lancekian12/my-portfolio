@@ -1,4 +1,6 @@
+// app/components/Hero.tsx
 import Image from "next/image";
+import { MapPin } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -20,9 +22,13 @@ const Hero = () => {
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-gray-900">
           Lance Kian Flores
         </h1>
-        <p className="font-body text-gray-600 mt-1">
-          📍 San Fabian, Pangasinan, Philippines
-        </p>
+
+        <div className="flex items-center gap-2 text-gray-700 mt-1">
+          {/* lucide icons use currentColor so text-* classes work */}
+          <MapPin className="w-5 h-5 text-gray-700" />
+          <span>San Fabian, Pangasinan, Philippines</span>
+        </div>
+
         <p className="font-body text-lg mt-2 text-gray-700">
           Software Developer
         </p>
