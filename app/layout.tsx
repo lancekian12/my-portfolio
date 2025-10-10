@@ -1,6 +1,7 @@
 // app/layout.tsx (Next.js App Router)
 import { Montserrat, Lato } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer";
 
 // Load fonts
 const montserrat = Montserrat({
@@ -27,7 +28,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>
-      <body className="font-body bg-white text-gray-800">{children}</body>
+      {/* page fills viewport and is a column so footer can sit at bottom */}
+      <body className="font-body bg-white text-gray-800 min-h-screen flex flex-col">
+        {/* main grows to take all available space */}
+        <main className="flex-grow flex flex-col items-center w-full">
+          {children}
+        </main>
+
+        {/* footer sits after main — will be at bottom when content is short */}
+        <Footer />
+      </body>
     </html>
   );
 }
