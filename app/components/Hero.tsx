@@ -83,7 +83,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-3 mt-6">
             {/* Email */}
             <a
-              href="mailto:yourname@email.com"
+              href="mailto:lancekian12@gmail.com"
               className="flex items-center justify-center gap-2 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 w-full py-[10px]"
             >
               <Mail className="w-4 h-4" />
@@ -92,7 +92,7 @@ const Hero = () => {
 
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/lance-kian-fangon/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 border border-gray-900 text-gray-900 dark:text-white rounded-xl font-medium hover:bg-gray-900 hover:text-white transition-all duration-300 w-full py-[10px]"
@@ -103,7 +103,7 @@ const Hero = () => {
 
             {/* GitHub */}
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/lancekian12"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 border border-gray-900 text-gray-900 dark:text-white rounded-xl font-medium hover:bg-gray-900 hover:text-white transition-all duration-300 w-full py-[10px]"
