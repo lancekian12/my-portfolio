@@ -5,9 +5,7 @@ import { MapPin } from "lucide-react";
 const Hero = () => {
   return (
     <section className="w-full pt-12">
-      {/* This row fills the parent max-w-5xl from page.tsx */}
       <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left">
-        {/* Profile Image */}
         <div className="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg">
           <Image
             src="/images/kian.jpg"
@@ -19,7 +17,6 @@ const Hero = () => {
           />
         </div>
 
-        {/* Text Info (will take remaining width) */}
         <div className="flex-1">
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-gray-900">
             Lance Kian Flores
