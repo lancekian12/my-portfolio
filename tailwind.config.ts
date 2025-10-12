@@ -1,7 +1,7 @@
-// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class", 
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-montserrat)", "sans-serif"], // optional
+        sans: ["var(--font-montserrat)", "sans-serif"],
         body: ["var(--font-lato)", "sans-serif"],
         heading: ["var(--font-montserrat)", "sans-serif"],
       },
