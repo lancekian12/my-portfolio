@@ -1,7 +1,7 @@
 "use client";
 import { User, BookOpen } from "lucide-react";
 import Link from "next/link";
-import { useState, JSX } from "react";
+import { useState, useEffect, JSX } from "react";
 
 const frontend = [
   "HTML",
@@ -25,19 +25,29 @@ const backend = [
   "MongoDB",
 ];
 const devops = ["Git", "GitHub", "Figma", "Docker"];
-
 const previewCount = 6;
 
 export default function AboutAndStudies(): JSX.Element {
   const [showExperience, setShowExperience] = useState(false);
+  const [loadedLeft, setLoadedLeft] = useState(false);
+  const [loadedRight, setLoadedRight] = useState(false);
+
+  useEffect(() => {
+    // Staggered animation
+    setTimeout(() => setLoadedLeft(true), 100); // left side after 100ms
+    setTimeout(() => setLoadedRight(true), 300); // right side after 300ms
+  }, []);
 
   return (
     <section id="about" aria-labelledby="about-heading" className="w-full py-8">
       <div className="mx-auto w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 items-stretch">
         {/* LEFT SIDE */}
-        <div className="flex flex-col gap-6">
+        <div
+          className={`flex flex-col gap-6 transform transition-all duration-700 ease-out
+            ${loadedLeft ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+        >
           {/* ABOUT */}
-          <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px]">
+          <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-300">
             <div className="flex items-center gap-3">
               <span className="rounded-md bg-gray-100 dark:bg-gray-800 p-2 text-gray-700 dark:text-gray-200">
                 <User className="h-5 w-5" />
@@ -68,7 +78,7 @@ export default function AboutAndStudies(): JSX.Element {
           </div>
 
           {/* TECH STACK */}
-          <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px]">
+          <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-300">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="rounded-md bg-gray-100 dark:bg-gray-800 p-2 text-gray-700 dark:text-gray-200">
@@ -122,17 +132,20 @@ export default function AboutAndStudies(): JSX.Element {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px]  flex flex-col h-full w-full relative">
+        <div
+          className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] flex flex-col h-full w-full relative transition-all duration-700 ease-out
+            ${loadedRight ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+        >
           {/* Toggle Header */}
-          <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="flex items-center justify-center gap-4 mb-4 ">
             <button
               onClick={() => setShowExperience(false)}
-              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border transition-all duration-300
-    ${
-      !showExperience
-        ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white dark:hover:bg-black dark:hover:text-white"
-        : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-white dark:hover:text-black"
-    }`}
+              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border 
+                ${
+                  !showExperience
+                    ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white dark:hover:bg-black dark:hover:text-white"
+                    : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-white dark:hover:text-black"
+                }`}
             >
               <BookOpen className="h-4 w-4" />
               Studies
@@ -178,11 +191,8 @@ export default function AboutAndStudies(): JSX.Element {
                   ].map(([title, school, year, active], index, arr) => (
                     <li
                       key={title as string}
-                      className={`relative pl-14 ${
-                        index === arr.length - 1 ? "pb-2" : ""
-                      }`}
+                      className={`relative pl-14 ${index === arr.length - 1 ? "pb-2" : ""}`}
                     >
-                      {/* timeline dot */}
                       <span
                         className={`absolute left-6 top-2 transform -translate-x-1/2 inline-block w-3 h-3 rounded-full ring-2 ring-white dark:ring-gray-900 transition-all duration-200 cursor-pointer ${
                           active

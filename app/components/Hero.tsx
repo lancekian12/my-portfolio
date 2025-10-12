@@ -1,11 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import { MapPin, Mail, Linkedin, Github, FileText } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { useState, useEffect } from "react";
 
 const Hero = () => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation on mount
+    setLoaded(true);
+  }, []);
+
   return (
     <section className="w-full pt-12 relative transition-colors">
-      <div className="w-full flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left">
+      <div
+        className={`w-full flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left
+          transform transition-all duration-700 ease-out
+          ${loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+      >
         {/* Profile Image */}
         <div className="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg dark:ring-gray-700 transition-all">
           <Image

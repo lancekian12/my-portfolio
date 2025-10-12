@@ -1,4 +1,3 @@
-// app/tech/page.tsx
 import Link from "next/link";
 
 const frontend = [
@@ -28,10 +27,10 @@ const devops = ["Git", "GitHub", "Figma", "Docker"];
 
 export default function TechPage() {
   return (
-    <div className="w-full max-w-4xl mx-auto px-6 py-12">
+    <div className="w-full max-w-4xl mx-auto px-6 py-12 text-gray-900 dark:text-gray-100 transition-colors">
       <Link
         href="/"
-        className="inline-flex items-center text-sm text-gray-600 mb-6 hover:text-gray-900"
+        className="inline-flex items-center text-sm text-gray-600 dark:text-gray-300 mb-6 hover:text-gray-900 dark:hover:text-white transition-colors"
       >
         ← Back to Home
       </Link>
@@ -45,7 +44,7 @@ export default function TechPage() {
           {frontend.map((t) => (
             <span
               key={t}
-              className="inline-block text-xs px-3 py-1 border border-gray-200 rounded-full text-gray-700"
+              className="inline-block text-xs px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-full text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
             >
               {t}
             </span>
@@ -60,7 +59,7 @@ export default function TechPage() {
           {backend.map((t) => (
             <span
               key={t}
-              className="inline-block text-xs px-3 py-1 border border-gray-200 rounded-full text-gray-700"
+              className="inline-block text-xs px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-full text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
             >
               {t}
             </span>
@@ -75,7 +74,7 @@ export default function TechPage() {
           {devops.map((t) => (
             <span
               key={t}
-              className="inline-block text-xs px-3 py-1 border border-gray-200 rounded-full text-gray-700"
+              className="inline-block text-xs px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-full text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
             >
               {t}
             </span>

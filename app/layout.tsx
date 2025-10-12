@@ -30,7 +30,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${montserrat.variable} ${lato.variable}`.trim()}
     >
-      <body>
+      <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <main className="flex-grow flex flex-col items-center w-full">
             {children}

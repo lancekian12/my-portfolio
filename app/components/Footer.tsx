@@ -4,7 +4,7 @@ export default function Footer() {
     <footer
       role="contentinfo"
       aria-label="Site footer"
-      className="w-full border-t border-gray-200 dark:border-gray-700 py-6 dark:bg-black "
+      className="w-full border-t border-gray-200 dark:border-gray-700 py-6 dark:bg-black-800 "
     >
       <div className="container mx-auto px-6 text-center">
         <p className="text-sm text-gray-600 dark:text-gray-400">
