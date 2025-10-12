@@ -1,6 +1,7 @@
 // app/page.tsx
 import Hero from "./components/Hero";
 import AboutAndStudies from "./components/AboutAndStudies";
+import Projects from "./components/Projects";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <div className="w-full max-w-4xl px-6">
         <Hero />
         <AboutAndStudies />
+        <Projects />
       </div>
     </main>
   );

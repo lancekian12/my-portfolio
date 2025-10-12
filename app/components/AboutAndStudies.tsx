@@ -133,7 +133,7 @@ export default function AboutAndStudies(): JSX.Element {
 
         {/* RIGHT SIDE */}
         <div
-          className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] flex flex-col h-full w-full relative transition-all duration-700 ease-out
+          className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] flex flex-col h-full w-full relative transition-all duration-300 ease-out
             ${loadedRight ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
         >
           {/* Toggle Header */}
@@ -169,7 +169,7 @@ export default function AboutAndStudies(): JSX.Element {
             {!showExperience && (
               <>
                 <div className="absolute left-6 top-6 bottom-0 w-px bg-gray-200 dark:bg-gray-700" />
-                <ul className="space-y-8">
+                <ul className="space-y-16">
                   {[
                     [
                       "BS Information Technology",
