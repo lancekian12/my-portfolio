@@ -23,7 +23,7 @@ const Hero = () => {
         {/* Profile Image */}
         <div className="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg dark:ring-gray-700 transition-all">
           <Image
-            src="/images/kian.jpg"
+            src="/images/kian2.jpg"
             alt="Lance Kian Flores"
             width={208}
             height={208}
