@@ -46,7 +46,7 @@ const projects: Project[] = [
     repo: "https://github.com/lancekian12/InsureChain",
   },
   {
-    title: "AppoinCare",
+    title: "AppointCare",
     description:
       "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
     tech: ["React.js", "Node.js", "Express", "MongoDB", "Kotlin"],
