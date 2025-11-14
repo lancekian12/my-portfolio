@@ -101,7 +101,6 @@ export default function Projects(): JSX.Element {
     }
   };
 
-  // determine how many projects to show
   const visibleProjects = isMobile
     ? projects.slice(current, current + 1)
     : projects.slice(current, current + 3);
@@ -109,7 +108,6 @@ export default function Projects(): JSX.Element {
   return (
     <section id="projects" className="w-full pb-12 relative">
       <div className="mx-auto w-full max-w-6xl">
-        {/* Header */}
         <motion.div
           className="flex items-center gap-3 mb-8"
           initial={{ opacity: 0, y: -20 }}
@@ -124,7 +122,6 @@ export default function Projects(): JSX.Element {
           </h2>
         </motion.div>
 
-        {/* Cards */}
         <motion.div
           className="relative"
           initial={{ opacity: 0, y: 30 }}
@@ -146,7 +143,6 @@ export default function Projects(): JSX.Element {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 * index, duration: 0.5 }}
               >
-                {/* Image */}
                 <div className="relative w-full h-44">
                   <Image
                     src={p.image}
@@ -156,7 +152,6 @@ export default function Projects(): JSX.Element {
                   />
                 </div>
 
-                {/* Info */}
                 <div className="p-6 flex flex-col justify-between flex-1">
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2">
@@ -177,7 +172,6 @@ export default function Projects(): JSX.Element {
                     </div>
                   </div>
 
-                  {/* Buttons */}
                   <div className="flex justify-end gap-2 mt-auto">
                     {p.repo && (
                       <a
@@ -207,7 +201,6 @@ export default function Projects(): JSX.Element {
             ))}
           </div>
 
-          {/* Bottom Arrows */}
           <div className="flex justify-center items-center gap-4 mt-8">
             <button
               onClick={prevSlide}

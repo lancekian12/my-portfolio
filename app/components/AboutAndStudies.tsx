@@ -33,20 +33,17 @@ export default function AboutAndStudies(): JSX.Element {
   const [loadedRight, setLoadedRight] = useState(false);
 
   useEffect(() => {
-    // Staggered animation
-    setTimeout(() => setLoadedLeft(true), 100); // left side after 100ms
-    setTimeout(() => setLoadedRight(true), 300); // right side after 300ms
+    setTimeout(() => setLoadedLeft(true), 100);
+    setTimeout(() => setLoadedRight(true), 300);
   }, []);
 
   return (
     <section id="about" aria-labelledby="about-heading" className="w-full py-8">
       <div className="mx-auto w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 items-stretch">
-        {/* LEFT SIDE */}
         <div
           className={`flex flex-col gap-6 transform transition-all duration-700 ease-out
             ${loadedLeft ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
         >
-          {/* ABOUT */}
           <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-300">
             <div className="flex items-center gap-3">
               <span className="rounded-md bg-gray-100 dark:bg-gray-800 p-2 text-gray-700 dark:text-gray-200">
@@ -76,8 +73,6 @@ export default function AboutAndStudies(): JSX.Element {
               </p>
             </div>
           </div>
-
-          {/* TECH STACK */}
           <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-300">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -130,14 +125,10 @@ export default function AboutAndStudies(): JSX.Element {
             </div>
           </div>
         </div>
-
-        {/* RIGHT SIDE */}
         <div
           className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] flex flex-col h-full w-full relative transition-all duration-300 ease-out
             ${loadedRight ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-        >
-          {/* Toggle Header */}
-          <div className="flex items-center justify-center gap-4 mb-4 ">
+        >          <div className="flex items-center justify-center gap-4 mb-4 ">
             <button
               onClick={() => setShowExperience(false)}
               className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border 
@@ -164,7 +155,6 @@ export default function AboutAndStudies(): JSX.Element {
             </button>
           </div>
 
-          {/* Content */}
           <div className="mt-2 border-t border-gray-100 dark:border-gray-800 pt-4 flex-1 relative">
             {!showExperience && (
               <>

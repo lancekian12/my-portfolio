@@ -2,6 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Montserrat, Lato } from "next/font/google";
 import Footer from "./components/Footer";
+import Spotlight from "./components/Spotlight";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
       className={`${montserrat.variable} ${lato.variable}`.trim()}
     >
       <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
+        <Spotlight  />
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <main className="flex-grow flex flex-col items-center w-full">
             {children}

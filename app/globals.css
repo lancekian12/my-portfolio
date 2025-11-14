@@ -1,2 +1,86 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ROOT CONTROLLED BY CSS (NO PROPS) */
+.spotlight-root {
+  --x: calc(50% + 60px);    /* slight horizontal offset */
+  --y: calc(50% + 40px);    /* slight vertical offset */
+  --spot-size: 50px;       /* soft bright area */
+  --spot-feather: 260px;    /* huge smooth fade */
+  --darkness: 0.04;        /* even more subtle for light mode */
+  pointer-events: none;
+  isolation: isolate;
+}
+
+/* ULTRA-SOFT MINIMAL OVERLAY */
+.spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, var(--darkness));
+
+  -webkit-mask-image: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent var(--spot-size),
+    black calc(var(--spot-size) + var(--spot-feather))
+  );
+  mask-image: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent var(--spot-size),
+    black calc(var(--spot-size) + var(--spot-feather))
+  );
+
+  background-image: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent var(--spot-size),
+    rgba(0, 0, 0, 0.01) calc(var(--spot-size) + var(--spot-feather)),
+    rgba(0, 0, 0, var(--darkness))
+  );
+}
+
+/* DARK MODE OVERLAY - slightly stronger for visibility */
+html.dark .spotlight-overlay {
+  background-color: rgba(255, 255, 255, 0.05); /* slightly more visible */
+  background-image: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent var(--spot-size),
+    rgba(255, 255, 255, 0.02) calc(var(--spot-size) + var(--spot-feather)),
+    rgba(255, 255, 255, 0.05)
+  );
+}
+
+/* MINIMAL CURSOR DOT */
+.spotlight-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;            /* smaller for subtlety */
+  height: 10px;           /* smaller for subtlety */
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35); /* stronger for visibility */
+  opacity: 0.6;          /* more subtle in light mode */
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+/* cursor for dark mode - tiny and subtle */
+html.dark .spotlight-cursor {
+  width: 10px;            
+  height: 10px;           
+  background: rgba(255, 255, 255, 0.35);
+  opacity: 0.6;
+}
+
+/* disable on small screens */
+@media (max-width: 480px) {
+  .spotlight-root {
+    display: none;
+  }
+}

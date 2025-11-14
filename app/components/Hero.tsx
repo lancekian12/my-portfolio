@@ -9,7 +9,6 @@ const Hero = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // Trigger animation on mount
     setLoaded(true);
   }, []);
 
@@ -20,7 +19,6 @@ const Hero = () => {
           transform transition-all duration-700 ease-out
           ${loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
       >
-        {/* Profile Image */}
         <div className="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 overflow-hidden rounded-2xl shadow-lg dark:ring-gray-700 transition-all">
           <Image
             src="/images/kian2.jpg"
@@ -32,33 +30,27 @@ const Hero = () => {
           />
         </div>
 
-        {/* Info Section */}
         <div className="flex-1 w-full max-w-3xl">
-          {/* Name + Theme Toggle */}
           <div className="flex flex-col xs:flex-row sm:flex-row items-center sm:items-start justify-between gap-2 w-full">
             <div className="flex items-center gap-2">
               <h1 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
                 Lance Kian Flores
               </h1>
-              {/* Show toggle beside name on mobile */}
               <div className="block sm:hidden">
                 <ThemeToggle />
               </div>
             </div>
 
-            {/* Show toggle on the right on desktop */}
             <div className="hidden sm:block ml-3">
               <ThemeToggle />
             </div>
           </div>
 
-          {/* Location */}
           <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300 mt-2 text-lg justify-center md:justify-start">
             <MapPin className="w-5 h-5 text-gray-700 dark:text-gray-300" />
             <span>San Fabian, Pangasinan, Philippines</span>
           </div>
 
-          {/* Role + Resume */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-3">
             <p className="font-body text-[20px] text-gray-700 dark:text-gray-300">
               Software Developer
@@ -79,9 +71,7 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Contact Buttons */}
           <div className="flex flex-wrap justify-center sm:justify-start gap-3 mt-6 w-full">
-            {/* Email */}
             <a
               href="mailto:lancekian12@gmail.com"
               className="flex items-center justify-center gap-2 bg-black text-white border border-gray-900 dark:bg-white dark:text-black dark:border-gray-700 hover:bg-gray-800 hover:text-white dark:hover:bg-black dark:hover:text-white rounded-xl font-medium transition-all duration-300 w-full sm:w-auto px-6 py-[10px]"
@@ -90,9 +80,7 @@ const Hero = () => {
               <span>Email</span>
             </a>
 
-            {/* Wrapper for full-width LinkedIn and GitHub */}
             <div className="flex flex-1 gap-3 w-full sm:w-auto">
-              {/* LinkedIn */}
               <a
                 href="https://www.linkedin.com/in/lance-kian-fangon/"
                 target="_blank"
@@ -102,8 +90,6 @@ const Hero = () => {
                 <Linkedin className="w-4 h-4" />
                 <span>LinkedIn</span>
               </a>
-
-              {/* GitHub */}
               <a
                 href="https://github.com/lancekian12"
                 target="_blank"
