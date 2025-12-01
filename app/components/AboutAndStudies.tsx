@@ -128,7 +128,9 @@ export default function AboutAndStudies(): JSX.Element {
         <div
           className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm hover:shadow-md hover:-translate-y-[1px] flex flex-col h-full w-full relative transition-all duration-300 ease-out
             ${loadedRight ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-        >          <div className="flex items-center justify-center gap-4 mb-4 ">
+        >
+          {" "}
+          <div className="flex items-center justify-center gap-4 mb-4 ">
             <button
               onClick={() => setShowExperience(false)}
               className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border 
@@ -154,7 +156,6 @@ export default function AboutAndStudies(): JSX.Element {
               Experience
             </button>
           </div>
-
           <div className="mt-2 border-t border-gray-100 dark:border-gray-800 pt-4 flex-1 relative">
             {!showExperience && (
               <>
@@ -210,15 +211,29 @@ export default function AboutAndStudies(): JSX.Element {
             )}
 
             {showExperience && (
-              <div className="text-center text-gray-600 dark:text-gray-400 mt-6">
-                <User className="h-8 w-8 mx-auto mb-2 text-gray-500 dark:text-gray-400" />
-                <p className="font-medium text-gray-800 dark:text-gray-200">
-                  No professional experience yet.
-                </p>
-                <p className="text-sm mt-1 text-gray-600 dark:text-gray-400">
-                  Currently focusing on academic learning and personal projects.
-                </p>
-              </div>
+              <>
+                <div className="absolute left-6 top-6 bottom-0 w-px bg-gray-200 dark:bg-gray-700" />
+                <ul className="space-y-10">
+                  <li className="relative pl-14">
+                    <span className="absolute left-6 top-2 transform -translate-x-1/2 inline-block w-3 h-3 rounded-full bg-black dark:bg-white ring-2 ring-white dark:ring-gray-900" />
+
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                      <div>
+                        <p className="font-semibold text-gray-900 dark:text-white text-lg">
+                          Boom Technologies Inc.
+                        </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Web Developer
+            </p>
+                      </div>
+
+                      <span className="text-xs border border-gray-200 dark:border-gray-700 rounded-full px-2 py-1 text-gray-600 dark:text-gray-400 mt-1 sm:mt-0">
+                        Present
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </>
             )}
           </div>
         </div>
