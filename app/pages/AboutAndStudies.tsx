@@ -94,21 +94,17 @@ export default function AboutAndStudies(): JSX.Element {
     };
 
     if ("addEventListener" in mq) {
-      // @ts-ignore
       mq.addEventListener("change", handler);
     } else {
-      // @ts-ignore
       mq.addListener(handler);
     }
     setIsDesktop(mq.matches);
 
     return () => {
       if ("removeEventListener" in mq) {
-        // @ts-ignore
-        mq.removeEventListener("change", handler);
+          mq.removeEventListener("change", handler);
       } else {
-        // @ts-ignore
-        mq.removeListener(handler);
+          mq.removeListener(handler);
       }
     };
   }, []);
@@ -119,30 +115,24 @@ export default function AboutAndStudies(): JSX.Element {
 
     const measure = () => {
       if (!aboutRef.current) return;
-      // offsetHeight is often more robust (integer px), but you can use getBoundingClientRect if preferred
       const h = Math.ceil(aboutRef.current.offsetHeight || aboutRef.current.getBoundingClientRect().height);
       setAboutHeight(h);
     };
 
-    // measure now
     measure();
 
-    // also measure on load (fonts/assets)
     const onLoad = () => requestAnimationFrame(measure);
     window.addEventListener("load", onLoad);
 
-    // ResizeObserver to keep measurement in sync with content changes
     let ro: ResizeObserver | null = null;
     if (typeof ResizeObserver !== "undefined") {
       ro = new ResizeObserver(() => requestAnimationFrame(measure));
       ro.observe(aboutRef.current);
     }
 
-    // window resize fallback
     const onResize = () => requestAnimationFrame(measure);
     window.addEventListener("resize", onResize);
 
-    // small fallback in case fonts load slightly after
     const timer = setTimeout(() => measure(), 200);
 
     return () => {
@@ -153,7 +143,6 @@ export default function AboutAndStudies(): JSX.Element {
     };
   }, [loadedLeft, loadedRight]);
 
-  // re-measure when user toggles experience so minHeight stays correct
   useEffect(() => {
     if (!aboutRef.current) return;
     requestAnimationFrame(() => {
@@ -165,16 +154,12 @@ export default function AboutAndStudies(): JSX.Element {
   return (
     <section
       id="about"
-      // whole container entrance animation
       className={`w-full py-8 transition-all duration-700 ${
         loadedContainer ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
       }`}
     >
-      {/* grid: allow stretching on md+ so columns can be same height */}
       <div className="mx-auto w-full grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:items-stretch items-start h-full min-h-0">
-        {/* LEFT column container: About + (desktop TechStack when Studies is active) */}
         <div className="flex flex-col gap-6 md:row-start-1 md:col-start-1">
-          {/* ABOUT */}
           <div
             ref={aboutRef}
             className={`rounded-xl border p-6 shadow-sm hover:shadow-md transition-all duration-500 ${
@@ -199,7 +184,6 @@ export default function AboutAndStudies(): JSX.Element {
             </div>
           </div>
 
-          {/* Desktop-only TechStack under About (keeps TechStack under About on md+) */}
           {!showExperience && (
             <div className="hidden md:block">
               <TechStack visible={loadedLeft} />
@@ -207,9 +191,6 @@ export default function AboutAndStudies(): JSX.Element {
           )}
         </div>
 
-        {/* RIGHT column: studies / experience card
-            -> apply minHeight on desktop based on measured aboutHeight (fixes the short timeline)
-            also give it h-full so it stretches when grid uses items-stretch */}
         <div
           ref={rightCardRef}
           style={aboutHeight && isDesktop ? { minHeight: `${aboutHeight}px` } : undefined}
@@ -241,12 +222,9 @@ export default function AboutAndStudies(): JSX.Element {
             </button>
           </div>
 
-          {/* content area - uses flex-1 so it expands; animate list items */}
           <div className="mt-2 border-t pt-4 flex-1 relative border-gray-100 dark:border-gray-800 min-h-0">
-            {/* vertical timeline line: offsets so it doesn't touch edges */}
             <div className="absolute left-6 top-6 bottom-6 w-px bg-gray-200 dark:bg-gray-700" />
 
-            {/* STUDIES */}
             {!showExperience ? (
               <ul className="space-y-16">
                 {education.map((ed, index, arr) => (
@@ -277,7 +255,6 @@ export default function AboutAndStudies(): JSX.Element {
                 ))}
               </ul>
             ) : (
-              // EXPERIENCE
               <ul className="space-y-10">
                 <li
                   className={`relative pl-14 transition-all duration-400 ease-in-out ${
@@ -301,12 +278,10 @@ export default function AboutAndStudies(): JSX.Element {
           </div>
         </div>
 
-        {/* MOBILE-only TechStack: always after right card on small screens (prevents order switching) */}
         <div className="block md:hidden">
           <TechStack visible={loadedLeft} />
         </div>
 
-        {/* DESKTOP-only: TechStack full-width when Experience is active */}
         {showExperience && (
           <div className="hidden md:block md:col-span-2 md:row-start-2">
             <TechStack visible={loadedRight} />
