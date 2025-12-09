@@ -1,24 +1,22 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
-
-@import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ROOT CONTROLLED BY CSS (NO PROPS) */
+/* =====================================
+   ROOT CONTROLLED BY CSS (NO PROPS)
+===================================== */
 .spotlight-root {
-  --x: calc(50% + 60px); /* slight horizontal offset */
-  --y: calc(50% + 40px); /* slight vertical offset */
-  --spot-size: 50px; /* soft bright area */
-  --spot-feather: 260px; /* huge smooth fade */
-  --darkness: 0.04; /* even more subtle for light mode */
+  --x: calc(50% + 60px);
+  --y: calc(50% + 40px);
+  --spot-size: 50px;
+  --spot-feather: 260px;
+  --darkness: 0.04;
   pointer-events: none;
   isolation: isolate;
 }
 
-/* ULTRA-SOFT MINIMAL OVERLAY */
+/* =====================================
+   ULTRA-SOFT MINIMAL OVERLAY
+===================================== */
 .spotlight-overlay {
   position: absolute;
   inset: 0;
@@ -29,6 +27,7 @@
     transparent var(--spot-size),
     black calc(var(--spot-size) + var(--spot-feather))
   );
+
   mask-image: radial-gradient(
     circle at var(--x) var(--y),
     transparent var(--spot-size),
@@ -43,20 +42,34 @@
   );
 }
 
-/* Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 0px; /* removes vertical scrollbar */
-  height: 0px; /* removes horizontal scrollbar */
-  background: transparent;
-}
+/* =====================================
+   SCROLLBAR HIDDEN — STILL SCROLLABLE
+===================================== */
 
 /* Firefox */
-* {
-  scrollbar-width: none; /* hide scrollbar */
-  -ms-overflow-style: none; /* IE 10+ */
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
 }
 
-/* Optional: prevent corner square in WebKit browsers */
-*::-webkit-scrollbar-corner {
+/* Chrome, Safari, Edge, iOS, Android */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent bottom-right white square */
+::-webkit-scrollbar-corner {
   background: transparent;
+}
+
+/* =====================================
+   MOBILE SAFETY (OPTIONAL)
+===================================== */
+@media (max-width: 768px) {
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
 }
