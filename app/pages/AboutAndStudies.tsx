@@ -5,9 +5,13 @@ import Link from "next/link";
 import { useState, useEffect, useLayoutEffect, useRef, JSX } from "react";
 import { frontend, backend, devops, education } from "@/app/data/data";
 
-const PREVIEW_COUNT = 6;
-
-function TechStack({ visible = true }: { visible?: boolean }): JSX.Element {
+function TechStack({
+  visible = true,
+  previewCount = 6,
+}: {
+  visible?: boolean;
+  previewCount?: number;
+}): JSX.Element {
   const groups: [string, string[]][] = [
     ["Frontend", frontend],
     ["Backend", backend],
@@ -50,7 +54,7 @@ function TechStack({ visible = true }: { visible?: boolean }): JSX.Element {
               {title}
             </h4>
             <div className="flex flex-wrap gap-2">
-              {(list as string[]).slice(0, PREVIEW_COUNT).map((t, i) => (
+              {(list as string[]).slice(0, previewCount).map((t, i) => (
                 <span
                   key={t}
                   style={{ transitionDelay: `${i * 60}ms` }}
@@ -330,7 +334,10 @@ export default function AboutAndStudies(): JSX.Element {
 
         {showExperience && (
           <div className="hidden md:block md:col-span-2 md:row-start-2">
-            <TechStack visible={loadedRight} />
+            <TechStack
+              visible={loadedLeft}
+              previewCount={showExperience ? 10 : 6}
+            />
           </div>
         )}
       </div>
