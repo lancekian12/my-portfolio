@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* =====================================
-   ROOT CONTROLLED BY CSS (NO PROPS)
-===================================== */
+
 .spotlight-root {
   --x: calc(50% + 60px);
   --y: calc(50% + 40px);
