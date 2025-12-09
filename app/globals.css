@@ -40,6 +40,8 @@
   );
 }
 
+
+
 /* =====================================
    SCROLLBAR HIDDEN — STILL SCROLLABLE
 ===================================== */
@@ -70,4 +72,10 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
   }
+}
+
+
+
+* {
+  cursor: none !important;
 }
