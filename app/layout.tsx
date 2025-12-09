@@ -3,7 +3,7 @@ import { ThemeProvider } from "next-themes";
 import { Montserrat, Lato } from "next/font/google";
 import Footer from "./pages/Footer";
 import ClickSpark from "@/components/ClickSpark";
-
+import ScrollProgress from "@/app/components/ScrollProgress";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -34,6 +34,7 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           {/* <SplashCursor /> */}
+          <ScrollProgress />
 
           <ClickSpark
             sparkSize={10}

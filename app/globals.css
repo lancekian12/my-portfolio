@@ -9,11 +9,11 @@
 
 /* ROOT CONTROLLED BY CSS (NO PROPS) */
 .spotlight-root {
-  --x: calc(50% + 60px);    /* slight horizontal offset */
-  --y: calc(50% + 40px);    /* slight vertical offset */
-  --spot-size: 50px;       /* soft bright area */
-  --spot-feather: 260px;    /* huge smooth fade */
-  --darkness: 0.04;        /* even more subtle for light mode */
+  --x: calc(50% + 60px); /* slight horizontal offset */
+  --y: calc(50% + 40px); /* slight vertical offset */
+  --spot-size: 50px; /* soft bright area */
+  --spot-feather: 260px; /* huge smooth fade */
+  --darkness: 0.04; /* even more subtle for light mode */
   pointer-events: none;
   isolation: isolate;
 }
@@ -43,15 +43,20 @@
   );
 }
 
-/* DARK MODE OVERLAY - slightly stronger for visibility */
-html.dark .spotlight-overlay {
-  background-color: rgba(255, 255, 255, 0.05); /* slightly more visible */
-  background-image: radial-gradient(
-    circle at var(--x) var(--y),
-    transparent var(--spot-size),
-    rgba(255, 255, 255, 0.02) calc(var(--spot-size) + var(--spot-feather)),
-    rgba(255, 255, 255, 0.05)
-  );
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 0px; /* removes vertical scrollbar */
+  height: 0px; /* removes horizontal scrollbar */
+  background: transparent;
 }
 
+/* Firefox */
+* {
+  scrollbar-width: none; /* hide scrollbar */
+  -ms-overflow-style: none; /* IE 10+ */
+}
 
+/* Optional: prevent corner square in WebKit browsers */
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
