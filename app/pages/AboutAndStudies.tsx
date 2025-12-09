@@ -15,7 +15,7 @@ function TechStack({ visible = true }: { visible?: boolean }): JSX.Element {
   ];
 
   return (
-    <div className="rounded-xl border p-6 shadow-sm hover:shadow-md transition-all duration-500 ease-out bg-white dark:bg-black border-gray-200 dark:border-gray-700">
+    <div className="rounded-xl border p-6 shadow-sm hover:shadow-md transition-all duration-200 ease-out bg-white dark:bg-black border-gray-200 dark:border-gray-700">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="rounded-md bg-gray-100 dark:bg-gray-800 p-2 text-gray-700 dark:text-gray-200">
@@ -54,10 +54,10 @@ function TechStack({ visible = true }: { visible?: boolean }): JSX.Element {
                 <span
                   key={t}
                   style={{ transitionDelay: `${i * 60}ms` }}
-                  className={`inline-block text-xs px-3 py-1 border rounded-full text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 transform transition-all duration-400 ${
+                  className={`inline-block text-xs px-3 py-1 border rounded-full text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 transform transition-all duration-100 ${
                     visible
                       ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-3"
+                      : "opacity-80 translate-y-3"
                   }`}
                 >
                   {t}
@@ -235,7 +235,7 @@ export default function AboutAndStudies(): JSX.Element {
           <div className="flex items-center justify-center gap-4 mb-4">
             <button
               onClick={() => setShowExperience(false)}
-              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border transition-colors duration-300 ${
+              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border transition-colors duration-100 ${
                 !showExperience
                   ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white"
                   : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300"
@@ -246,7 +246,7 @@ export default function AboutAndStudies(): JSX.Element {
 
             <button
               onClick={() => setShowExperience(true)}
-              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border transition-colors duration-300 ${
+              className={`flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full border transition-colors duration-100 ${
                 showExperience
                   ? "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white"
                   : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:text-gray-300"
