@@ -76,6 +76,6 @@ body::-webkit-scrollbar {
 
 
 
-* {
+html, body, #__next, .dark, .dark * {
   cursor: none !important;
 }
