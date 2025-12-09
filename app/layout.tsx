@@ -1,7 +1,7 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Montserrat, Lato } from "next/font/google";
-import Footer from "./components/Footer";
+import Footer from "./pages/Footer";
 import ClickSpark from "@/components/ClickSpark";
 import SplashCursor from "@/components/SplashCursor";
 

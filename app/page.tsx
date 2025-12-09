@@ -1,6 +1,6 @@
-import Hero from "./components/Hero";
-import AboutAndStudies from "./components/AboutAndStudies";
-import Projects from "./components/Projects";
+import Hero from "./pages/Hero";
+import AboutAndStudies from "./pages/AboutAndStudies";
+import Projects from "./pages/Projects";
 
 export default function Home() {
   return (

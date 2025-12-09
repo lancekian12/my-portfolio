@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { MapPin, Mail, Linkedin, Github, FileText } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../components/ThemeToggle";
 import { useState, useEffect } from "react";
 
 const Hero = () => {
