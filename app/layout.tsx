@@ -2,7 +2,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Montserrat, Lato } from "next/font/google";
 import Footer from "./components/Footer";
-import Spotlight from "./components/Spotlight";
+import ClickSpark from "@/components/ClickSpark";
+import SplashCursor from "@/components/SplashCursor";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,12 +33,20 @@ export default function RootLayout({
       className={`${montserrat.variable} ${lato.variable}`.trim()}
     >
       <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
-        <Spotlight  />
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          <main className="flex-grow flex flex-col items-center w-full">
-            {children}
-          </main>
-          <Footer />
+          {/* <SplashCursor /> */}
+
+          <ClickSpark
+            sparkSize={10}
+            sparkRadius={15}
+            sparkCount={8}
+            duration={400}
+          >
+            <main className="flex-grow flex flex-col items-center w-full">
+              {children}
+            </main>
+            <Footer />
+          </ClickSpark>
         </ThemeProvider>
       </body>
     </html>

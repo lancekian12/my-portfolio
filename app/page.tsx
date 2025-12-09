@@ -1,4 +1,3 @@
-// app/page.tsx
 import Hero from "./components/Hero";
 import AboutAndStudies from "./components/AboutAndStudies";
 import Projects from "./components/Projects";

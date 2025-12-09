@@ -54,33 +54,4 @@ html.dark .spotlight-overlay {
   );
 }
 
-/* MINIMAL CURSOR DOT */
-.spotlight-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 10px;            /* smaller for subtlety */
-  height: 10px;           /* smaller for subtlety */
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.35); /* stronger for visibility */
-  opacity: 0.6;          /* more subtle in light mode */
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
-}
 
-/* cursor for dark mode - tiny and subtle */
-html.dark .spotlight-cursor {
-  width: 10px;            
-  height: 10px;           
-  background: rgba(255, 255, 255, 0.35);
-  opacity: 0.6;
-}
-
-/* disable on small screens */
-@media (max-width: 480px) {
-  .spotlight-root {
-    display: none;
-  }
-}
