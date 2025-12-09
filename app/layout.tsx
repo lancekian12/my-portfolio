@@ -1,19 +1,23 @@
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { Montserrat, Lato } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import Footer from "./pages/Footer";
 import ClickSpark from "@/components/ClickSpark";
 import ScrollProgress from "@/app/components/ScrollProgress";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
-const montserrat = Montserrat({
+
+// ✅ Body Font (Clean UI)
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
 });
-const lato = Lato({
+
+// ✅ Headline Font (Modern Aesthetic)
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-lato",
-  weight: ["300", "400", "700"],
+  variable: "--font-space",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -30,13 +34,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${montserrat.variable} ${lato.variable}`.trim()}
+      className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
       <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          {/* <SplashCursor /> */}
+
           <ScrollProgress />
           <SmoothCursor />
+
           <ClickSpark
             sparkSize={10}
             sparkRadius={15}
@@ -46,8 +51,10 @@ export default function RootLayout({
             <main className="flex-grow flex flex-col items-center w-full">
               {children}
             </main>
+
             <Footer />
           </ClickSpark>
+
         </ThemeProvider>
       </body>
     </html>
