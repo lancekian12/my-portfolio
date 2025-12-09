@@ -6,6 +6,7 @@ export const frontend = [
   "Bulma",
   "React.js",
   "Next.js",
+  "Dart",
   "Flutter",
 ];
 
@@ -29,8 +30,11 @@ export const devops = [
   "Docker",
   "Slack",
   "Trello",
+  'Netlify',
+  'Vercel',
   "VSCode",
   "WebStorm",
+  "Android Studio",
 ];
 
 export const education = [
