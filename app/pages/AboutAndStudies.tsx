@@ -312,9 +312,12 @@ export default function AboutAndStudies(): JSX.Element {
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                     <div>
                       <p className="font-semibold text-gray-900 dark:text-white">
-                        Boom Technologies Inc.
+                        Boom Technologies
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="font-semibold text-gray-900 dark:text-white">
+                        Inc
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                         Web Developer
                       </p>
                     </div>

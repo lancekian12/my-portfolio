@@ -38,7 +38,6 @@ export default function RootLayout({
     >
       <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-
           <ScrollProgress />
           <SmoothCursor />
 
@@ -54,7 +53,6 @@ export default function RootLayout({
 
             <Footer />
           </ClickSpark>
-
         </ThemeProvider>
       </body>
     </html>

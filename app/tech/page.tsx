@@ -3,7 +3,7 @@ import { frontend, backend, devops } from "@/app/data/data"; // adjust path
 
 export default function TechPage() {
   return (
-    <div className="w-full max-w-4xl mx-auto px-6 py-12 text-gray-900 dark:text-gray-100 transition-colors">
+    <div className="w-full max-w-4xl mx-auto px-6 py-12 min-h-screen text-gray-900 dark:text-gray-100 transition-colors">
       <Link
         href="/"
         className="inline-flex items-center text-sm text-gray-600 dark:text-gray-300 mb-6 hover:text-gray-900 dark:hover:text-white transition-colors"
