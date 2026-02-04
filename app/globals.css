@@ -74,6 +74,12 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (min-width: 768px) {
+  * {
+    cursor: none;
+  }
+}
+
 
 
 html, body, #__next, .dark, .dark * {
