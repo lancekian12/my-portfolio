@@ -70,7 +70,7 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   html, body {
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
   }
 }
 
@@ -81,7 +81,3 @@ body::-webkit-scrollbar {
 }
 
 
-
-html, body, #__next, .dark, .dark * {
-  cursor: none !important;
-}

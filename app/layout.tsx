@@ -37,7 +37,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="flex flex-col min-h-screen bg-white dark:bg-gray-950 transition-colors">
+      <body className="flex flex-col min-h-screen overflow-y-auto bg-white dark:bg-gray-950 transition-colors">
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <ScrollProgress />
           <ClientEffects />
