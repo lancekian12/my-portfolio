@@ -8,6 +8,7 @@ export const frontend = [
   "Next.js",
   "Dart",
   "Flutter",
+  "Typescript"
 ];
 
 export const backend = [
