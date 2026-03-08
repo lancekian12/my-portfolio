@@ -2,7 +2,6 @@
 import "./globals.css";
 import { Manrope, Geist } from "next/font/google";
 import ScrollProgress from "./components/ScrollProgress";
-import ThemeWrapper from "./components/ThemeWrapper";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { cn } from "@/lib/utils";
 

@@ -1,67 +1,90 @@
 "use client";
 
 import React from "react";
-import { Link, Code } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  image: string;
+  code: string;
+  demo: string;
+};
+
+const projects: Project[] = [
   {
-    title: "Lumina Dashboard",
-    desc: "Real-time cryptocurrency tracking dashboard with predictive analytics and customizable alerts.",
-    tags: ["React", "FastAPI"],
+    title: "Clarify",
+    description:
+      "A high-performance analytics platform built with React and FastAPI.",
+    image: "/images/Clarify.jpeg",
+    code: "#",
+    demo: "#",
   },
   {
-    title: "FlowState Tasker",
-    desc: "Minimalist productivity tool designed for deep work sessions with Pomodoro integration.",
-    tags: ["TypeScript", "PostgreSQL"],
+    title: "AppointCare",
+    description:
+      "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
+    image: "/images/AppointCare.jpeg",
+    code: "#",
+    demo: "#",
   },
 ];
 
-const FeaturedProjects: React.FC = () => (
-  <section className="space-y-12">
-    <h2 className="text-center text-xs uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 font-bold">
-      Featured Projects
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {projects.map((p) => (
-        <div
-          key={p.title}
-          className="group rounded-xl overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 shadow-sm bg-transparent"
-        >
-          <div className="aspect-video relative overflow-hidden bg-slate-200 dark:bg-slate-800" />
-          <div className="py-6 px-2 space-y-3">
-            <h3 className="text-xl font-bold">{p.title}</h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2">
-              {p.desc}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {p.tags.map((t) => (
-                <span
-                  key={t}
-                  className="text-[10px] uppercase tracking-wider font-bold text-primary px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700"
-                >
-                  {t}
-                </span>
-              ))}
+const FeaturedProjects: React.FC = () => {
+  return (
+    <section className="space-y-12">
+      <h2 className="text-center text-xs uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 font-bold">
+        Selected Works
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {projects.map((project) => (
+          <div key={project.title} className="group">
+            {/* Image */}
+            <div className="aspect-video overflow-hidden mb-6 border border-slate-100 dark:border-slate-900 bg-slate-100 dark:bg-slate-900">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover grayscale opacity-60 
+                group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105
+                transition-all duration-500"
+              />
             </div>
-            <div className="pt-2 flex items-center justify-between">
+
+            {/* Title */}
+            <h3 className="text-lg font-bold tracking-tight mb-2">
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm font-light text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+              {project.description}
+            </p>
+
+            {/* Links */}
+            <div className="flex gap-6">
               <a
-                className="text-slate-400 hover:text-primary transition-colors flex items-center gap-1 text-sm font-semibold"
-                href="#"
+                href={project.code}
+                className="text-[10px] font-bold tracking-widest uppercase 
+                border-b border-transparent hover:border-slate-900 dark:hover:border-white
+                transition-all py-1"
               >
-                <Link className="h-4 w-4" /> Demo
+                View Code
               </a>
+
               <a
-                className="text-slate-400 hover:text-primary transition-colors flex items-center gap-1 text-sm font-semibold"
-                href="#"
+                href={project.demo}
+                className="text-[10px] font-bold tracking-widest uppercase 
+                border-b border-transparent hover:border-slate-900 dark:hover:border-white
+                transition-all py-1"
               >
-                <Code className="h-4 w-4" /> View Code
+                Live Demo
               </a>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default FeaturedProjects;

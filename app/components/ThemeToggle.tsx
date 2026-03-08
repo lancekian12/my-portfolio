@@ -1,40 +1,46 @@
 "use client";
 
-import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { Button } from "components/ui/button";
 
-import { Button } from "./";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+export default function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [, updateState] = useState({}); // force update
 
-export function ModeToggle() {
-  const { setTheme } = useTheme();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === "dark";
+
+  const handleClick = () => {
+    setTheme(isDark ? "light" : "dark");
+    // force React to re-render so resolvedTheme updates
+    updateState({});
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="outline"
+      size="icon"
+      className="relative rounded-full"
+      onClick={handleClick}
+    >
+      <FaSun
+        className={`absolute h-6 w-6 transition-all duration-300 ${
+          isDark ? "scale-100 rotate-0" : "scale-0 -rotate-90"
+        }`}
+      />
+      <FaMoon
+        className={`absolute h-6 w-6 transition-all duration-300 ${
+          isDark ? "scale-0 rotate-90" : "scale-100 rotate-0"
+        }`}
+      />
+    </Button>
   );
 }
