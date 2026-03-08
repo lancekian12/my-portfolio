@@ -45,7 +45,7 @@ const Header: React.FC = () => {
           <ThemeToggle />
         </div>
 
-        <p className="text-xl text-primary font-medium tracking-wide">
+        <p className="text-xl text-primary font-medium tracking-wide dark:text-slate-500 ">
           Software Developer
         </p>
       </div>
