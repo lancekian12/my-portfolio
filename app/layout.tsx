@@ -1,8 +1,12 @@
 // app/layout.tsx
 import "./globals.css";
-import { Manrope } from "next/font/google";
-import Providers from "./components/Provider"; // adjust name if needed
+import { Manrope, Geist } from "next/font/google";
 import ScrollProgress from "./components/ScrollProgress";
+import ThemeWrapper from "./components/ThemeWrapper";
+import { ThemeProvider } from "./components/ThemeProvider";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -11,29 +15,25 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Lance Kian Flores | Portfolio",
-  description: "Portfolio of Lance Kian Flores",
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${manrope.variable}`} // makes --font-manrope available globally
-    >
-      {/* Use Tailwind utility classes as before; bg tokens are defined in globals.css */}
-      <body className="font-display flex flex-col min-h-screen overflow-y-auto bg-[var(--background-light)] dark:bg-[var(--background-dark)] text-slate-900 dark:text-slate-100 transition-colors duration-300">
-        <Providers>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+      <body
+        className={`${manrope.variable} font-sans`} 
+      >
+        <ThemeProvider
+                    attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
           <ScrollProgress />
-
-          <div className="min-h-screen flex flex-col items-center px-4 py-8 md:py-16">
+          <div className="min-h-screen flex flex-col items-center px-4 py-8 md:py-16 bg-[var(--color-background-light)] dark:bg-[var(--color-background-dark)]">
             <main className="w-full max-w-[720px] flex flex-col gap-24">
               {children}
             </main>
           </div>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

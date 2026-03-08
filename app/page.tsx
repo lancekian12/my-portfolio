@@ -4,6 +4,7 @@ import GithubContributions from "./components/GithubContribution";
 import TechStack from "./components/TechStack";
 import Experience from "./components/Experience";
 import FeaturedProjects from "./components/FeaturedProject";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -17,12 +18,7 @@ export default function Home() {
         </section>
         <Experience />
         <FeaturedProjects />
-        <footer className="pt-20 pb-10 text-center border-t border-slate-200 dark:border-slate-800">
-          <p className="text-sm text-slate-400">
-            © {new Date().getFullYear()} Lance Kian Flores. Built with passion
-            and clean code.
-          </p>
-        </footer>
+        <Footer/>
       </div>
     </main>
   );

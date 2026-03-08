@@ -9,7 +9,7 @@ const ThemeToggle: React.FC = () => {
     root.classList.toggle("dark");
     localStorage.setItem(
       "theme",
-      root.classList.contains("dark") ? "dark" : "light"
+      root.classList.contains("dark") ? "dark" : "light",
     );
   };
 
@@ -17,10 +17,10 @@ const ThemeToggle: React.FC = () => {
     <button
       onClick={toggle}
       aria-label="Toggle theme"
-      className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-primary transition-all"
+      className="p-2 rounded-lg bg-slate-100  text-slate-500 hover:text-primary transition-all"
     >
-      <Moon className="block dark:hidden w-5 h-5" />
-      <Sun className="hidden dark:block text-slate-100 w-5 h-5" />
+      <Moon className="block  w-5 h-5" />
+      <Sun className="hidden text-slate-100 w-5 h-5" />
     </button>
   );
 };
@@ -29,7 +29,9 @@ const Header: React.FC = () => {
   return (
     <section className="flex flex-col items-center text-center space-y-8">
       <div className="relative group">
-<div className="relative size-32 md:size-40 rounded-xl border-2 border-slate-200 dark:border-slate-800 overflow-hidden bg-white shadow-sm">          <img
+        <div className="relative size-32 md:size-40 rounded-xl border-2 border-slate-200  overflow-hidden bg-white shadow-sm">
+          {" "}
+          <img
             src="/images/kian3.jpg"
             alt="Lance Kian Flores profile"
             className="w-full h-full object-cover"
@@ -39,35 +41,35 @@ const Header: React.FC = () => {
 
       <div className="space-y-3">
         <div className="flex items-center justify-center gap-4">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h1 className="text-4xl dark:text-slate-100 md:text-5xl font-bold tracking-tight">
             Lance Kian Flores
           </h1>
           <ThemeToggle />
         </div>
 
-        <p className="text-xl text-primary font-medium tracking-wide dark:text-slate-500 ">
+        <p className="text-xl text-slate-700 dark:text-slate-500 font-medium tracking-wide ">
           Software Developer
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 text-slate-500 dark:text-slate-400 font-medium">
+      <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
         <a
           className="flex items-center gap-2 hover:text-primary transition-colors"
-          href="mailto:lance@example.com"
+          href="mailto:lancekian12@gmail.com"
         >
           <Mail size={20} /> Email
         </a>
 
         <a
           className="flex items-center gap-2 hover:text-primary transition-colors"
-          href="#"
+          href="https://www.linkedin.com/in/lance-kian-fangon/"
         >
           <Link size={20} /> LinkedIn
         </a>
 
         <a
           className="flex items-center gap-2 hover:text-primary transition-colors"
-          href="#"
+          href="https://github.com/lancekian12"
         >
           <Github size={20} /> GitHub
         </a>

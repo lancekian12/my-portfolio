@@ -1,3 +1,7 @@
+export default function TechPage() {
+  return null; // minimal placeholder so TS sees it as a module
+}
+
 // import Link from "next/link";
 // import { frontend, backend, devops } from "@/app/data/data"; // adjust path
 
