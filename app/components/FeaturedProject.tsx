@@ -14,7 +14,7 @@ const projects: Project[] = [
   {
     title: "Clarify",
     description:
-      "A high-performance analytics platform built with React and FastAPI.",
+      "AI Platform with 3 AI features – a project demonstrating advanced AI capabilities",
     image: "/images/Clarify.jpeg",
     code: "#",
     demo: "#",
