@@ -1,83 +1,98 @@
+/* globals.css */
+
+/* Tailwind v4 import */
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
+/* Tailwind v4 theme tokens */
+@theme {
 
-.spotlight-root {
-  --x: calc(50% + 60px);
-  --y: calc(50% + 40px);
-  --spot-size: 50px;
-  --spot-feather: 260px;
-  --darkness: 0.04;
-  pointer-events: none;
-  isolation: isolate;
+  /* Font */
+  --font-display: var(--font-manrope), "Manrope", sans-serif;
+
+  /* Colors from your design */
+  --color-primary: #000000;
+
+  --color-background-light: #f6f6f8;
+  --color-background-dark: #111621;
+
+  /* Slate palette used in your design */
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-600: #475569;
+  --color-slate-800: #0f172a;
+
+  /* Border radius tokens */
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
 }
 
-/* =====================================
-   ULTRA-SOFT MINIMAL OVERLAY
-===================================== */
-.spotlight-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, var(--darkness));
+/* Base styles */
+@layer base {
 
-  -webkit-mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    transparent var(--spot-size),
-    black calc(var(--spot-size) + var(--spot-feather))
-  );
+  html {
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-  mask-image: radial-gradient(
-    circle at var(--x) var(--y),
-    transparent var(--spot-size),
-    black calc(var(--spot-size) + var(--spot-feather))
-  );
+  body {
+    @apply bg-background-light text-slate-900 transition-colors duration-300;
+  }
 
-  background-image: radial-gradient(
-    circle at var(--x) var(--y),
-    transparent var(--spot-size),
-    rgba(0, 0, 0, 0.01) calc(var(--spot-size) + var(--spot-feather)),
-    rgba(0, 0, 0, var(--darkness))
-  );
+  html.dark body {
+    @apply bg-background-dark text-slate-100;
+  }
+
 }
 
+/* Custom components from your HTML design */
 
-
-/* =====================================
-   SCROLLBAR HIDDEN — STILL SCROLLABLE
-===================================== */
-
-/* Firefox */
-html, body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overflow-x: hidden;
+.github-grid {
+  display: grid;
+  grid-template-columns: repeat(52, 1fr);
+  gap: 3px;
 }
 
-/* Chrome, Safari, Edge, iOS, Android */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none;
+.github-cell {
+  aspect-ratio: 1/1;
+  border-radius: 2px;
+}
+/* Scroll progress variable */
+:root {
+  --scroll-progress: 0;
 }
 
-/* Prevent bottom-right white square */
-::-webkit-scrollbar-corner {
+/* scrollbar size */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* track = progress bar */
+::-webkit-scrollbar-track {
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-slate-800) calc(var(--scroll-progress) * 100%),
+      transparent 0
+    );
+  border-radius: 9999px;
+}
+
+/* thumb */
+::-webkit-scrollbar-thumb {
   background: transparent;
 }
 
-/* =====================================
-   MOBILE SAFETY (OPTIONAL)
-===================================== */
-@media (max-width: 768px) {
-  html, body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: auto;
-  }
+/* dark mode */
+html.dark ::-webkit-scrollbar-track {
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-slate-200) calc(var(--scroll-progress) * 100%),
+      transparent 0
+    );
 }
-
-@media (min-width: 768px) {
-  * {
-    cursor: none;
-  }
-}
-
-

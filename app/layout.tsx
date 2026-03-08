@@ -1,60 +1,39 @@
+// app/layout.tsx
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import { Inter, Space_Grotesk } from "next/font/google";
-import Footer from "./pages/Footer";
-import ClickSpark from "@/components/ClickSpark";
-import ScrollProgress from "@/app/components/ScrollProgress";
-import ClientEffects from "./components/ClientEffects";
+import { Manrope } from "next/font/google";
+import Providers from "./components/Provider"; // adjust name if needed
+import ScrollProgress from "./components/ScrollProgress";
 
-// ✅ Body Font (Clean UI)
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-manrope",
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
-
-// ✅ Headline Font (Modern Aesthetic)
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  weight: ["400", "500", "600", "700"],
-});
-
 
 export const metadata = {
   title: "Lance Kian Flores | Portfolio",
   description: "Portfolio of Lance Kian Flores",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-  }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable}`}
+      className={`${manrope.variable}`} // makes --font-manrope available globally
     >
-      <body className="flex flex-col min-h-screen overflow-y-auto bg-white dark:bg-gray-950 transition-colors">
-        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+      {/* Use Tailwind utility classes as before; bg tokens are defined in globals.css */}
+      <body className="font-display flex flex-col min-h-screen overflow-y-auto bg-[var(--background-light)] dark:bg-[var(--background-dark)] text-slate-900 dark:text-slate-100 transition-colors duration-300">
+        <Providers>
           <ScrollProgress />
-          <ClientEffects />
 
-          <ClickSpark
-            sparkSize={10}
-            sparkRadius={15}
-            sparkCount={8}
-            duration={400}
-          >
-            <main className="flex-grow flex flex-col items-center w-full">
+          <div className="min-h-screen flex flex-col items-center px-4 py-8 md:py-16">
+            <main className="w-full max-w-[720px] flex flex-col gap-24">
               {children}
             </main>
-
-            <Footer />
-          </ClickSpark>
-        </ThemeProvider>
+          </div>
+        </Providers>
       </body>
     </html>
   );
