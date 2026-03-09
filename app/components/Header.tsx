@@ -1,3 +1,4 @@
+// Header.tsx (small changes)
 "use client";
 
 import React from "react";
@@ -20,13 +21,16 @@ const Header: React.FC = () => {
 
       {/* Name + Theme Toggle */}
       <div className="space-y-3">
-        <div className="flex items-center justify-center gap-3">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-slate-100">
+        {/* Prevent wrapping so toggle stays beside the name */}
+        <div className="flex items-center justify-center gap-3 flex-nowrap">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-slate-100 whitespace-nowrap">
             Lance Kian Flores
           </h1>
 
-          {/* Dark Mode Toggle beside name */}
-          <ThemeToggle />
+          {/* prevent toggle from shrinking */}
+          <div className="flex-shrink-0">
+            <ThemeToggle />
+          </div>
         </div>
 
         <p className="text-lg md:text-xl text-slate-700 dark:text-slate-500 font-medium tracking-wide">
