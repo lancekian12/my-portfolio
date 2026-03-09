@@ -1,36 +1,15 @@
 "use client";
 
 import React from "react";
-import { Mail, Link, Github, Moon, Sun } from "lucide-react";
-
-const ThemeToggle: React.FC = () => {
-  const toggle = () => {
-    const root = document.documentElement;
-    root.classList.toggle("dark");
-    localStorage.setItem(
-      "theme",
-      root.classList.contains("dark") ? "dark" : "light",
-    );
-  };
-
-  return (
-    <button
-      onClick={toggle}
-      aria-label="Toggle theme"
-      className="p-2 rounded-lg bg-slate-100  text-slate-500 hover:text-primary transition-all"
-    >
-      <Moon className="block  w-5 h-5" />
-      <Sun className="hidden text-slate-100 w-5 h-5" />
-    </button>
-  );
-};
+import { Mail, Link, Github } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC = () => {
   return (
-    <section className="flex flex-col items-center text-center space-y-8">
+    <section className="w-full px-4 flex flex-col items-center text-center space-y-8">
+      {/* Profile Image */}
       <div className="relative group">
-        <div className="relative size-32 md:size-40 rounded-xl border-2 border-slate-200  overflow-hidden bg-white shadow-sm">
-          {" "}
+        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl border-2 border-slate-200 overflow-hidden bg-white shadow-sm">
           <img
             src="/images/kian3.jpg"
             alt="Lance Kian Flores profile"
@@ -39,19 +18,23 @@ const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Name + Theme Toggle */}
       <div className="space-y-3">
-        <div className="flex items-center justify-center gap-4">
-          <h1 className="text-4xl dark:text-slate-100 md:text-5xl font-bold tracking-tight">
+        <div className="flex items-center justify-center gap-3">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-slate-100">
             Lance Kian Flores
           </h1>
+
+          {/* Dark Mode Toggle beside name */}
           <ThemeToggle />
         </div>
 
-        <p className="text-xl text-slate-700 dark:text-slate-500 font-medium tracking-wide ">
+        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-500 font-medium tracking-wide">
           Software Developer
         </p>
       </div>
 
+      {/* Links */}
       <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
         <a
           className="flex items-center gap-2 hover:text-primary transition-colors"

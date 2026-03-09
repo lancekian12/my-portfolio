@@ -15,7 +15,11 @@ type Contribution = {
 };
 type Cell = Contribution | null;
 
-const GithubContributions = ({ username = "lancekian12" }: { username?: string }) => {
+const GithubContributions = ({
+  username = "lancekian12",
+}: {
+  username?: string;
+}) => {
   // data
   const [weeks, setWeeks] = useState<Cell[][]>([]);
   const [total, setTotal] = useState<number | null>(null);
@@ -58,7 +62,11 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
         const thisYear = now.getUTCFullYear();
         const start = new Date(Date.UTC(thisYear - 1, 2, 1)); // last March 1 (UTC)
         const end = new Date(
-          Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1),
+          Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate() + 1,
+          ),
         ); // exclusive
 
         const years = Array.from(
@@ -86,7 +94,11 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
           map.set(c.date, c);
 
         const dayList: Contribution[] = [];
-        for (let d = new Date(start); d < end; d.setUTCDate(d.getUTCDate() + 1)) {
+        for (
+          let d = new Date(start);
+          d < end;
+          d.setUTCDate(d.getUTCDate() + 1)
+        ) {
           const iso = d.toISOString().slice(0, 10);
           dayList.push(map.get(iso) ?? { date: iso, count: 0, level: 0 });
         }
@@ -137,12 +149,17 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
     let lastMonth = -1;
     for (let col = 0; col < weeks.length; col++) {
       const week = weeks[col];
-      const firstCell = week.find((c) => c !== null) as Contribution | undefined;
+      const firstCell = week.find((c) => c !== null) as
+        | Contribution
+        | undefined;
       if (!firstCell) continue;
       const dt = new Date(firstCell.date + "T00:00:00Z");
       const m = dt.getUTCMonth();
       if (m !== lastMonth) {
-        labels.push({ col, text: dt.toLocaleString(undefined, { month: "short" }) });
+        labels.push({
+          col,
+          text: dt.toLocaleString(undefined, { month: "short" }),
+        });
         lastMonth = m;
       }
     }
@@ -178,7 +195,10 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
       const spacingBelow = 8; // vertical gap between grid and legend
       const left = Math.max(
         0,
-        container.scrollLeft + container.clientWidth - (legendSize.w || 140) - paddingRight,
+        container.scrollLeft +
+          container.clientWidth -
+          (legendSize.w || 140) -
+          paddingRight,
       );
       // compute top relative to container: inner.offsetTop + inner.height + spacing (so legend is below)
       const top = inner.offsetTop + inner.clientHeight + spacingBelow;
@@ -187,7 +207,8 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
   }, [weeks, legendSize.w]); // re-run when weeks render or legend size measured
 
   /* ----------------- helper ----------------- */
-  const findColumnForIso = (iso: string) => weeks.findIndex((wk) => wk.some((c) => c?.date === iso));
+  const findColumnForIso = (iso: string) =>
+    weeks.findIndex((wk) => wk.some((c) => c?.date === iso));
 
   /* ----------------- auto-scroll to middle-of-month on first render ----------------- */
   useEffect(() => {
@@ -196,17 +217,22 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
     if (!container) return;
 
     const thisYear = now.getUTCFullYear();
-    const midMonthIso = new Date(Date.UTC(thisYear, now.getUTCMonth(), 15)).toISOString().slice(0, 10);
+    const midMonthIso = new Date(Date.UTC(thisYear, now.getUTCMonth(), 15))
+      .toISOString()
+      .slice(0, 10);
 
     const midCol = findColumnForIso(midMonthIso);
     const todayCol = findColumnForIso(todayIso);
 
-    const targetCol = midCol !== -1 ? midCol : todayCol !== -1 ? todayCol : weeks.length - 1;
+    const targetCol =
+      midCol !== -1 ? midCol : todayCol !== -1 ? todayCol : weeks.length - 1;
 
     if (targetCol !== -1) {
       const desired = Math.max(
         0,
-        targetCol * colFullPx - Math.round(container.clientWidth / 2) + Math.round(colFullPx / 2),
+        targetCol * colFullPx -
+          Math.round(container.clientWidth / 2) +
+          Math.round(colFullPx / 2),
       );
       container.scrollLeft = desired;
     }
@@ -224,7 +250,13 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
     const spacingBelow = 8;
 
     const update = () => {
-      const left = Math.max(0, container.scrollLeft + container.clientWidth - legendSize.w - paddingRight);
+      const left = Math.max(
+        0,
+        container.scrollLeft +
+          container.clientWidth -
+          legendSize.w -
+          paddingRight,
+      );
       const top = inner.offsetTop + inner.clientHeight + spacingBelow;
       setLegendPos({ left, top });
     };
@@ -260,8 +292,10 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
   }, [legendSize.w, legendSize.h, weeks]);
 
   /* ----------------- early returns ----------------- */
-  if (loading) return <div className="text-sm text-slate-400">Loading contributions…</div>;
-  if (weeks.length === 0) return <div className="text-sm text-slate-400">No contribution data.</div>;
+  if (loading)
+    return <div className="text-sm text-slate-400">Loading contributions…</div>;
+  if (weeks.length === 0)
+    return <div className="text-sm text-slate-400">No contribution data.</div>;
 
   /* ----------------- sizes ----------------- */
   const assumedColFull = colFullPx ?? 16;
@@ -271,10 +305,12 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xs uppercase tracking-wider text-slate-400 font-bold">GitHub Contributions</h2>
+        <h2 className="text-xs uppercase tracking-wider text-slate-400 font-bold">
+          GitHub Contributions
+        </h2>
         <div className="text-sm text-slate-500">
-          <span className="font-semibold">{total}</span>{" "}
-          <span className="font-semibold">contributions in the last year</span>
+          <span className="font-semibold text-xs sm:text-sm">{total}</span>{" "}
+          <span className="font-semibold text-xs sm:text-sm">contributions in the last year</span>
         </div>
       </div>
 
@@ -286,7 +322,11 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
           style={{ WebkitOverflowScrolling: "touch" }}
         >
           {/* inner content (columns only) */}
-          <div ref={innerRef} style={{ width: contentWidthPx }} className="relative">
+          <div
+            ref={innerRef}
+            style={{ width: contentWidthPx }}
+            className="relative"
+          >
             {/* month labels row */}
             <div className="flex items-start pl-0">
               <div className="w-10" /> {/* left gutter for weekday labels */}
@@ -301,8 +341,17 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
                 {weeks.map((_, colIndex) => {
                   const label = monthLabels.find((m) => m.col === colIndex);
                   return (
-                    <div key={`m-${colIndex}`} className="h-4 w-[1px] flex items-start justify-center">
-                      {label ? <div className="text-[10px] text-slate-400 translate-x-10">{label.text}</div> : <div className="text-[10px]">&nbsp;</div>}
+                    <div
+                      key={`m-${colIndex}`}
+                      className="h-4 w-[1px] flex items-start justify-center"
+                    >
+                      {label ? (
+                        <div className="text-[10px] text-slate-400 translate-x-10">
+                          {label.text}
+                        </div>
+                      ) : (
+                        <div className="text-[10px]">&nbsp;</div>
+                      )}
                     </div>
                   );
                 })}
@@ -339,7 +388,12 @@ const GithubContributions = ({ username = "lancekian12" }: { username?: string }
                     week.map((cell, rowIndex) => {
                       const key = `${colIndex}-${rowIndex}`;
                       if (!cell) {
-                        return <div key={key} className="w-3 h-3 rounded-sm bg-transparent contrib-cell" />;
+                        return (
+                          <div
+                            key={key}
+                            className="w-3 h-3 rounded-sm bg-transparent contrib-cell"
+                          />
+                        );
                       }
                       const isToday = cell.date === todayIso;
                       const colorClass = colors[cell.level] ?? colors[0];

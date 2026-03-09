@@ -23,52 +23,55 @@ const experiences: ExperienceItem[] = [
     role: "Fullstack Developer",
     period: "November 2025 – Present",
     description:
-    "Built an AI-powered platform with 3 core AI features while leading a team of 4 developers, modernizing enterprise dashboard architectures using React and TypeScript.",
+      "Built an AI-powered platform with 3 core AI features while leading a team of 4 developers, modernizing enterprise dashboard architectures using React and TypeScript.",
   },
 ];
 
 export default function Experience() {
   return (
-    <section className="space-y-12">
-      <h2 className="text-center text-xs uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 font-bold">
+    <section className="mx-auto max-w-3xl px-4 py-8">
+      <h2 className="text-center text-xs uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500 font-bold mb-6">
         Study and Experience
       </h2>
 
       <div className="relative">
-        {/* center timeline */}
-        <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-slate-400 via-slate-200 to-transparent dark:via-slate-800" />
+        {/* Center vertical timeline (shown only on md and up) */}
+        <div className="hidden md:block absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-slate-300 via-slate-200 to-transparent dark:from-slate-700 dark:via-slate-800" />
 
-        <div className="space-y-12">
+        <div className="space-y-6">
           {experiences.map((exp, index) => {
             const isLeft = index % 2 === 0;
-
-            // first item = school icon
             const Icon = index === 0 ? GraduationCap : Briefcase;
 
             return (
-              <div key={index} className="relative flex items-center w-full">
-                
-                {/* LEFT SIDE */}
-                <div
-                  className={`w-1/2 pr-8 ${
-                    isLeft ? "text-left" : "opacity-0"
-                  }`}
-                >
-                  {isLeft && <Card exp={exp} />}
+              <div key={index} className="relative">
+                {/* MOBILE: simple stacked layout with icon left */}
+                <div className="flex items-start gap-4 md:hidden">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center shadow-sm border border-white dark:border-slate-900">
+                    <Icon size={16} />
+                  </div>
+
+                  <div className="flex-1">
+                    <Card exp={exp} />
+                  </div>
                 </div>
 
-                {/* ICON */}
-                <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-900 bg-slate-900 text-white shadow">
-                  <Icon size={18} />
-                </div>
+                {/* DESKTOP: timeline layout */}
+                <div className="hidden md:flex items-center md:justify-between md:mb-12">
+                  {/* left side */}
+                  <div className={`w-1/2 pr-8 ${!isLeft ? "invisible" : "visible"}`}>
+                    {isLeft && <Card exp={exp} />}
+                  </div>
 
-                {/* RIGHT SIDE */}
-                <div
-                  className={`w-1/2 pl-8 ${
-                    !isLeft ? "text-left" : "opacity-0"
-                  }`}
-                >
-                  {!isLeft && <Card exp={exp} />}
+                  {/* icon in center */}
+                  <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white shadow border border-white dark:border-slate-900">
+                    <Icon size={18} />
+                  </div>
+
+                  {/* right side */}
+                  <div className={`w-1/2 pl-8 ${isLeft ? "invisible" : "visible"}`}>
+                    {!isLeft && <Card exp={exp} />}
+                  </div>
                 </div>
               </div>
             );
@@ -81,25 +84,15 @@ export default function Experience() {
 
 function Card({ exp }: { exp: ExperienceItem }) {
   return (
-    <div className="bg-white dark:bg-slate-900/50 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-      
-      <div className="flex items-center justify-between mb-1">
-        <div className="font-bold text-slate-900 dark:text-white">
-          {exp.company}
-        </div>
+    <article className="bg-white dark:bg-slate-900/60 p-4 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="flex items-start justify-between mb-1">
+        <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white">{exp.company}</h3>
+        <time className="text-xs text-slate-500 font-semibold ml-3">{exp.period}</time>
       </div>
 
-      <time className="text-xs font-semibold text-slate-500">
-        {exp.period}
-      </time>
+      <div className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium mb-2">{exp.role}</div>
 
-      <div className="text-slate-600 font-medium mb-3">
-        {exp.role}
-      </div>
-
-      <p className="text-slate-600 dark:text-slate-400 text-sm">
-        {exp.description}
-      </p>
-    </div>
+      <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{exp.description}</p>
+    </article>
   );
 }
