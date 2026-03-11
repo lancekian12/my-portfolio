@@ -8,7 +8,7 @@ import { Button } from "components/ui/button";
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [, updateState] = useState({}); // force update
+  const [, updateState] = useState({}); 
 
   useEffect(() => {
     setMounted(true);
@@ -20,7 +20,6 @@ export default function ThemeToggle() {
 
   const handleClick = () => {
     setTheme(isDark ? "light" : "dark");
-    // force React to re-render so resolvedTheme updates
     updateState({});
   };
 

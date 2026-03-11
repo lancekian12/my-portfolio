@@ -17,7 +17,7 @@ const projects: Project[] = [
       "AI Platform with 3 AI features – a project demonstrating advanced AI capabilities",
     image: "/images/Clarify.jpeg",
     code: "#",
-    demo: "#",
+    demo: "https://internship.boomtech.co",
   },
   {
     title: "AppointCare",
@@ -50,17 +50,14 @@ const FeaturedProjects: React.FC = () => {
               />
             </div>
 
-            {/* Title */}
             <h3 className="text-lg font-bold tracking-tight mb-2">
               {project.title}
             </h3>
 
-            {/* Description */}
             <p className="text-sm font-light text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
               {project.description}
             </p>
 
-            {/* Links */}
             <div className="flex gap-6">
               <a
                 href={project.code}

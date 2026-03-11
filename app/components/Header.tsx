@@ -1,4 +1,3 @@
-// Header.tsx (small changes)
 "use client";
 
 import React from "react";
@@ -8,7 +7,6 @@ import ThemeToggle from "./ThemeToggle";
 const Header: React.FC = () => {
   return (
     <section className="w-full px-4 flex flex-col items-center text-center space-y-8">
-      {/* Profile Image */}
       <div className="relative group">
         <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl border-2 border-slate-200 overflow-hidden bg-white shadow-sm">
           <img
@@ -19,15 +17,12 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Name + Theme Toggle */}
       <div className="space-y-3">
-        {/* Prevent wrapping so toggle stays beside the name */}
         <div className="flex items-center justify-center gap-3 flex-nowrap">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-slate-100 whitespace-nowrap">
             Lance Kian Flores
           </h1>
 
-          {/* prevent toggle from shrinking */}
           <div className="flex-shrink-0">
             <ThemeToggle />
           </div>
@@ -38,7 +33,6 @@ const Header: React.FC = () => {
         </p>
       </div>
 
-      {/* Links */}
       <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
         <a
           className="flex items-center gap-2 hover:text-primary transition-colors"

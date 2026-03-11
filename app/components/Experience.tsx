@@ -35,7 +35,6 @@ export default function Experience() {
       </h2>
 
       <div className="relative">
-        {/* Center vertical timeline (shown only on md and up) */}
         <div className="hidden md:block absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-slate-300 via-slate-200 to-transparent dark:from-slate-700 dark:via-slate-800" />
 
         <div className="space-y-6">
@@ -45,7 +44,6 @@ export default function Experience() {
 
             return (
               <div key={index} className="relative">
-                {/* MOBILE: simple stacked layout with icon left */}
                 <div className="flex items-start gap-4 md:hidden">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center shadow-sm border border-white dark:border-slate-900">
                     <Icon size={16} />
@@ -56,19 +54,15 @@ export default function Experience() {
                   </div>
                 </div>
 
-                {/* DESKTOP: timeline layout */}
                 <div className="hidden md:flex items-center md:justify-between md:mb-12">
-                  {/* left side */}
                   <div className={`w-1/2 pr-8 ${!isLeft ? "invisible" : "visible"}`}>
                     {isLeft && <Card exp={exp} />}
                   </div>
 
-                  {/* icon in center */}
                   <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white shadow border border-white dark:border-slate-900">
                     <Icon size={18} />
                   </div>
 
-                  {/* right side */}
                   <div className={`w-1/2 pl-8 ${isLeft ? "invisible" : "visible"}`}>
                     {!isLeft && <Card exp={exp} />}
                   </div>
