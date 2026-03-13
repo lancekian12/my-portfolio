@@ -31,7 +31,12 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-8 md:py-16">
       <div className="w-full max-w-[920px] flex flex-col gap-24">
-        <motion.div variants={fadeUp} initial="hidden" animate="show">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          viewport={{ amount: 0.4 }}
+        >
           <Header />
         </motion.div>
 
@@ -39,7 +44,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ margin: "-100px" }}
+          viewport={{ amount: 0.4 }}
         >
           <AboutUs />
         </motion.div>
