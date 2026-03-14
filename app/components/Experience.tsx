@@ -14,7 +14,7 @@ const experiences: ExperienceItem[] = [
   {
     company: "Phinma University Of Pangasinan",
     role: "Senior Student",
-    period: "2021 – 2026",
+    period: "2022 – 2026",
     description:
       "I'm dedicated to developing mobile and web applications. I continuously improve my skills by building projects and learning modern technologies.",
   },
