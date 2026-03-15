@@ -189,3 +189,15 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@media (max-width: 768px) {
+  /* Chrome, Edge, Safari */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: none; /* hide scrollbar */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+}
