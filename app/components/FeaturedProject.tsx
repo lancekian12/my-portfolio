@@ -33,7 +33,7 @@ const projects: Project[] = [
       "AccessAbility is a GPS-based mobile application that empowers PWDs to navigate Dagupan with ease. By combining real-time GPS tracking with accessibility-focused features, the app enhances independence and mobility for users.",
     image: "/images/Accessability.png",
     code: "https://github.com/lancekian12/3Y2AAPWD",
-    demo: "accessability-web.vercel.app",
+    demo: "https://accessability-web.vercel.app/",
   },
   {
     title: "Event Master Playground",
