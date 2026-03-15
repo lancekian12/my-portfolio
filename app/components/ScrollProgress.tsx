@@ -79,8 +79,9 @@ const ScrollProgress: React.FC = () => {
     <div
       className="fixed top-0 h-full z-50"
       style={{
-        right: "3px",
+        right: "2px",
         width: "6px",
+        zIndex: 9999,
         pointerEvents: "none",
       }}
       aria-hidden

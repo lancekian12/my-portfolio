@@ -190,14 +190,29 @@
 }
 
 @media (max-width: 768px) {
-  /* Chrome, Edge, Safari */
-  ::-webkit-scrollbar {
-    display: none;
+  /* target the actual scrolling elements */
+  html, body, #__next {
+    -webkit-overflow-scrolling: touch; /* keep momentum scrolling */
+  }
+
+  /* WebKit/Blink (Chrome Android, Safari) - force hide */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #__next::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
   }
 
   /* Firefox */
-  * {
-    scrollbar-width: none; /* hide scrollbar */
-    -ms-overflow-style: none; /* IE 10+ */
+  html, body, #__next, * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important; /* IE 10+ */
+  }
+
+  /* Optional: make sure no element later re-opens a scrollbar */
+  *::-webkit-scrollbar {
+    display: none !important;
   }
 }
