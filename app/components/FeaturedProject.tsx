@@ -16,7 +16,7 @@ const projects: Project[] = [
     description:
       "AI Platform with 3 AI features – a project demonstrating advanced AI capabilities",
     image: "/images/Clarify.jpeg",
-    code: "#",
+    code: "https://github.com/lancekian12/boomintern2025",
     demo: "https://internship.boomtech.co",
   },
   {
@@ -24,8 +24,24 @@ const projects: Project[] = [
     description:
       "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
     image: "/images/AppointCare.jpeg",
-    code: "#",
+    code: "https://github.com/lancekian12/AppointCare-Web",
     demo: "#",
+  },
+  {
+    title: "Accessability",
+    description:
+      "AccessAbility is a GPS-based mobile application that empowers PWDs to navigate Dagupan with ease. By combining real-time GPS tracking with accessibility-focused features, the app enhances independence and mobility for users.",
+    image: "/images/Accessability.png",
+    code: "https://github.com/lancekian12/3Y2AAPWD",
+    demo: "accessability-web.vercel.app",
+  },
+  {
+    title: "Event Master Playground",
+    description:
+      "A fun and interactive React project built with Tailwind CSS to explore and experiment with different DOM events. Perfect for learning how to handle user interactions in a modern web app!",
+    image: "/images/Event-Master.png",
+    code: "https://github.com/lancekian12/Client-Event-Playground",
+    demo: "https://eventmaster-playground.vercel.app/",
   },
 ];
 
