@@ -190,29 +190,28 @@
 }
 
 @media (max-width: 768px) {
-  /* target the actual scrolling elements */
+  /* Target the scrollable containers */
   html, body, #__next {
-    -webkit-overflow-scrolling: touch; /* keep momentum scrolling */
+    overflow: auto; /* ensure scrolling still works */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling */
   }
 
-  /* WebKit/Blink (Chrome Android, Safari) - force hide */
+  /* WebKit browsers (Chrome, Edge, Safari) */
   html::-webkit-scrollbar,
   body::-webkit-scrollbar,
   #__next::-webkit-scrollbar {
-    width: 0 !important;
-    height: 0 !important;
-    display: none !important;
-    background: transparent !important;
+    width: 0;
+    height: 0;
+    background: transparent;
   }
 
   /* Firefox */
-  html, body, #__next, * {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important; /* IE 10+ */
+  html, body, #__next {
+    scrollbar-width: none; /* hides scrollbar */
   }
 
-  /* Optional: make sure no element later re-opens a scrollbar */
+  /* Optional: hide scrollbar for any inner scrollable elements */
   *::-webkit-scrollbar {
-    display: none !important;
+    display: none;
   }
 }

@@ -35,7 +35,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.1 }}
         >
           <Header />
         </motion.div>
@@ -44,7 +44,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.1 }}
         >
           <AboutUs />
         </motion.div>
@@ -64,7 +64,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.2 }}
         >
           <TechStack />
         </motion.section>
@@ -73,7 +73,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.1 }}
         >
           <Experience />
         </motion.div>
@@ -82,19 +82,19 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ amount: 0.4 }}
+          viewport={{ amount: 0.3 }}
         >
           <FeaturedProjects />
+          <Footer />
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ amount: 0.4 }}
         >
-          <Footer />
-        </motion.div>
+        </motion.div> */}
       </div>
     </main>
   );
