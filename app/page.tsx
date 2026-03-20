@@ -82,9 +82,10 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
-          viewport={{ amount: 0.3 }}
+          viewport={{ amount: 0.1 }}
         >
           <FeaturedProjects />
+
           <Footer />
         </motion.div>
 

@@ -1,101 +1,96 @@
 "use client";
 
-import React from "react";
-
-type Project = {
-  title: string;
-  description: string;
-  image: string;
-  code: string;
-  demo: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Clarify",
-    description:
-      "AI Platform with 3 AI features – a project demonstrating advanced AI capabilities",
-    image: "/images/Clarify.jpeg",
-    code: "https://github.com/lancekian12/boomintern2025",
-    demo: "https://internship.boomtech.co",
-  },
-  {
-    title: "AppointCare",
-    description:
-      "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
-    image: "/images/AppointCare.jpeg",
-    code: "https://github.com/lancekian12/AppointCare-Web",
-    demo: "#",
-  },
-  {
-    title: "Accessability",
-    description:
-      "AccessAbility is a GPS-based mobile application that empowers PWDs to navigate Dagupan with ease. By combining real-time GPS tracking with accessibility-focused features, the app enhances independence and mobility for users.",
-    image: "/images/Accessability.png",
-    code: "https://github.com/lancekian12/3Y2AAPWD",
-    demo: "https://accessability-web.vercel.app/",
-  },
-  {
-    title: "Event Master Playground",
-    description:
-      "A fun and interactive React project built with Tailwind CSS to explore and experiment with different DOM events. Perfect for learning how to handle user interactions in a modern web app!",
-    image: "/images/Event-Master.png",
-    code: "https://github.com/lancekian12/Client-Event-Playground",
-    demo: "https://eventmaster-playground.vercel.app/",
-  },
-];
+import { projects } from "app/data/projects";
+import React, { useState } from "react";
+import Image from "next/image";
 
 const FeaturedProjects: React.FC = () => {
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleProjects = showAll ? projects : projects.slice(0, 5);
+
   return (
-    <section className="space-y-12">
-      <h2 className="text-center text-xs uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 font-bold">
-        Selected Works
+    <section className="space-y-12 max-w-[920px] mx-auto px-4 sm:px-0">
+      <h2 className="text-center text-xs uppercase tracking-wider text-slate-400 font-bold">
+        Featured Projects
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        {projects.map((project) => (
-          <div key={project.title} className="group">
-            {/* Image */}
-            <div className="aspect-video overflow-hidden mb-6 border border-slate-100 dark:border-slate-900 bg-slate-100 dark:bg-slate-900">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover grayscale opacity-60 
-                group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105
-                transition-all duration-500"
-              />
+      {visibleProjects.map((project, index) => {
+        const isWebsite = project.platform.toLowerCase().includes("website");
+        const isLastProject = index === visibleProjects.length - 1;
+
+        return (
+          <div key={project.title}>
+            <div className="flex flex-col">
+              <h3 className="text-lg md:text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100 mb-1">
+                {project.title}
+              </h3>
+
+              <p className="text-sm md:text-base text-slate-700 dark:text-slate-500 leading-relaxed mb-4">
+                {project.description}
+              </p>
+
+              <div className="flex flex-row gap-3 flex-wrap">
+                {project.tech.map((tech, techIndex) => (
+                  <p
+                    key={techIndex}
+                    className="border rounded-sm font-semibold border-slate-200 dark:border-slate-700 px-2 py-2 text-xs text-slate-500 dark:text-slate-400"
+                  >
+                    {tech}
+                  </p>
+                ))}
+              </div>
+
+              <div
+                className={`mt-4 flex gap-4 ${
+                  isWebsite
+                    ? "w-full"
+                    : "w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[14vw] xl:w-[12vw]"
+                }`}
+              >
+                {project.image.map((src, imageIndex) => (
+                  <Image
+                    key={imageIndex}
+                    src={src}
+                    alt={project.title}
+                    className={`border rounded-lg object-cover w-full h-auto ${
+                      imageIndex === 2 ? "hidden sm:block" : ""
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <div className="flex gap-6 mt-5">
+                <a
+                  href={project.repo}
+                  className="text-[10px] font-bold tracking-widest uppercase rounded-sm border px-3 py-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary hover:border-slate-900 dark:hover:border-white transition-all"
+                >
+                  View Code
+                </a>
+                <a
+                  href={project.demo}
+                  className="text-[10px] font-bold tracking-widest uppercase rounded-sm border px-3 py-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary hover:border-slate-900 dark:hover:border-white transition-all"
+                >
+                  Live Demo
+                </a>
+              </div>
             </div>
 
-            <h3 className="text-lg font-bold tracking-tight mb-2">
-              {project.title}
-            </h3>
-
-            <p className="text-sm font-light text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-              {project.description}
-            </p>
-
-            <div className="flex gap-6">
-              <a
-                href={project.code}
-                className="text-[10px] font-bold tracking-widest uppercase 
-                border-b border-transparent hover:border-slate-900 dark:hover:border-white
-                transition-all py-1"
-              >
-                View Code
-              </a>
-
-              <a
-                href={project.demo}
-                className="text-[10px] font-bold tracking-widest uppercase 
-                border-b border-transparent hover:border-slate-900 dark:hover:border-white
-                transition-all py-1"
-              >
-                Live Demo
-              </a>
-            </div>
+            {!isLastProject && <hr className="mt-10 mb-10 border-slate-200 dark:border-slate-800" />}
           </div>
-        ))}
-      </div>
+        );
+      })}
+
+      {projects.length > 5 && (
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="text-[10px] font-bold tracking-widest uppercase rounded-sm border px-4 py-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary hover:border-slate-900 dark:hover:border-white transition-all"
+          >
+            {showAll ? "View Less" : "View More"}
+          </button>
+        </div>
+      )}
     </section>
   );
 };
