@@ -48,16 +48,39 @@ const FeaturedProjects: React.FC = () => {
                     : "w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[14vw] xl:w-[12vw]"
                 }`}
               >
-                {project.image.map((src, imageIndex) => (
-                  <Image
-                    key={imageIndex}
-                    src={src}
-                    alt={project.title}
-                    className={`border rounded-lg object-cover w-full h-auto ${
-                      imageIndex === 2 ? "hidden sm:block" : ""
-                    }`}
-                  />
-                ))}
+                {project.image.map((src, imageIndex) => {
+                  if (imageIndex === 2) {
+                    return (
+                      <div
+                        key={imageIndex}
+                        className="hidden sm:block w-full overflow-hidden rounded-lg border flex-shrink-0"
+                        style={{
+                          clipPath: "inset(0 40% 0 0)",
+                        }}
+                      >
+                        <Image
+                          src={src}
+                          alt={project.title}
+                          width={600}
+                          height={400}
+                          quality={100}
+                          className="block w-full h-auto object-cover object-left"
+                        />
+                      </div>
+                    );
+                  }
+                  return (
+                    <Image
+                      key={imageIndex}
+                      src={src}
+                      alt={project.title}
+                      width={600}
+                      quality={100}
+                      height={400}
+                      className="border rounded-lg object-cover w-full h-auto"
+                    />
+                  );
+                })}
               </div>
 
               <div className="flex gap-6 mt-5">
@@ -76,7 +99,9 @@ const FeaturedProjects: React.FC = () => {
               </div>
             </div>
 
-            {!isLastProject && <hr className="mt-10 mb-10 border-slate-200 dark:border-slate-800" />}
+            {!isLastProject && (
+              <hr className="mt-10 mb-10 border-slate-200 dark:border-slate-800" />
+            )}
           </div>
         );
       })}
