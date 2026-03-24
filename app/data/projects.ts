@@ -2,7 +2,7 @@ import clarifyImage1 from "public/images/clarifyImage1.png";
 import accesabilityImage1 from "public/images/accessabilityImage1.jpg";
 import accesabilityImage2 from "public/images/accessabilityImage2.jpg";
 import accesabilityImage3 from "public/images/accessabilityImage3.jpg";
-import cryptotelImage1 from "public/images/cryptotelImage.jpg";
+import cryptotelImage1 from "public/images/cryptotelImage4.jpeg";
 import cryptotelImage2 from "public/images/cryptotelImage2.jpg";
 import cryptotelImage3 from "public/images/cryptotelImage3.jpg";
 import studyWithMeImage1 from "public/images/studywithmeImage1.jpg";
