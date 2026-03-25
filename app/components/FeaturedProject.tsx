@@ -45,7 +45,7 @@ const FeaturedProjects: React.FC = () => {
                 className={`mt-4 flex gap-4 ${
                   isWebsite
                     ? "w-full"
-                    : "w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[14vw] xl:w-[12vw]"
+                    : "w-[38vw] sm:w-[26vw] md:w-[18vw] lg:w-[16vw] xl:w-[13vw]"
                 }`}
               >
                 {project.image.map((src, imageIndex) => {
