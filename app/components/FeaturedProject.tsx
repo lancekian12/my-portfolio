@@ -90,12 +90,14 @@ const FeaturedProjects: React.FC = () => {
                 >
                   View Code
                 </a>
-                <a
-                  href={project.demo}
-                  className="text-[10px] font-bold tracking-widest uppercase rounded-sm border px-3 py-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary hover:border-slate-900 dark:hover:border-white transition-all"
-                >
-                  Live Demo
-                </a>
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    className="text-[10px] font-bold tracking-widest uppercase rounded-sm border px-3 py-2 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-primary hover:border-slate-900 dark:hover:border-white transition-all"
+                  >
+                    Live Demo
+                  </a>
+                )}
               </div>
             </div>
 

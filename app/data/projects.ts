@@ -11,6 +11,11 @@ import studyWithMeImage3 from "public/images/studywithmeImage3.jpg";
 import eventmasterImage1 from "public/images/eventmasterImage1.png";
 import insurechainImage2 from "public/images/insurechainImage2.png";
 import appointCareImage2 from "public/images/appointcareImage2.png";
+import snackSociety from "public/images/snack_society.jpg";
+import mealApp1 from "public/images/mealapp_picture1.jpg";
+import mealApp2 from "public/images/mealapp_picture2.jpg";
+import mealApp3 from "public/images/mealapp_picture3.jpg";
+
 import { Project } from "app/types/data.types";
 
 export const projects: Project[] = [
@@ -36,7 +41,14 @@ export const projects: Project[] = [
     title: "AccessAbility",
     description:
       "A GPS-based mobile navigation app built to assist persons with disabilities. Offers accessible routes, real-time tracking, and voice-guided navigation using Dart, Flutter, and Google Maps API with Firebase authentication.",
-    tech: ["Dart", "Flutter", "Bloc", "Firebase", "Google Maps API", "AI Assistant"],
+    tech: [
+      "Dart",
+      "Flutter",
+      "Bloc",
+      "Firebase",
+      "Google Maps API",
+      "AI Assistant",
+    ],
     platform: "Mobile",
     image: [accesabilityImage1, accesabilityImage2, accesabilityImage3],
     repo: "https://github.com/lancekian12/3Y2AAPWD",
@@ -50,17 +62,25 @@ export const projects: Project[] = [
     platform: "Website & Mobile",
     image: [appointCareImage2],
     repo: "https://github.com/lancekian12/AppointCare-Web",
-    demo: "#",
+    demo: "",
   },
   {
     title: "CryptoHotel",
     description:
       "A hotel booking platform with secure crypto payments. Uses Flutter, Node.js, and MongoDB to enable fast and private global transactions with MetaMask integration.",
-    tech: ["Flutter", "Node.js", "Bloc", "Leaflet", "Express", "MongoDB", "MetaMask"],
+    tech: [
+      "Flutter",
+      "Node.js",
+      "Bloc",
+      "Leaflet",
+      "Express",
+      "MongoDB",
+      "MetaMask",
+    ],
     platform: "Mobile",
     image: [cryptotelImage3, cryptotelImage1, cryptotelImage2],
     repo: "https://github.com/lancekian12/3Y1Cryptotel",
-    demo: "#",
+    demo: "",
   },
   {
     title: "InsureChain",
@@ -80,7 +100,7 @@ export const projects: Project[] = [
     platform: "Mobile",
     image: [studyWithMeImage1, studyWithMeImage2, studyWithMeImage3],
     repo: "https://github.com/lancekian12/StudyWithMe",
-    demo: "#",
+    demo: "",
   },
   {
     title: "Event Master Playground",
@@ -92,6 +112,26 @@ export const projects: Project[] = [
     repo: "https://github.com/lancekian12/Client-Event-Playground",
     demo: "https://eventmaster-playground.vercel.app/",
   },
+  {
+    title: "Meals App",
+    description:
+      "A mobile food and meal management app built with Flutter, allowing users to explore a variety of meals, view detailed recipes, and filter options based on dietary preferences. It features a clean and responsive UI with state management using Riverpod, providing a smooth and organized user experience for browsing and managing favorite meals.",
+    tech: ["Dart", "Flutter", "Riverpod"],
+    platform: "Mobile",
+    image: [mealApp1, mealApp2, mealApp3],
+    repo: "https://github.com/lancekian12/Meals-App",
+    demo: "",
+  },
+  {
+    title: "Snack Society App",
+    description:
+      "A modern food community web app where users can discover, share, and explore recipes from around the world. Built with Next.js and Tailwind CSS, it features a clean UI focused on browsing meals, engaging with a community of food lovers, and showcasing culinary creations in an interactive way.",
+    tech: ["NextJS", "Tailwind", "Typescript"],
+    platform: "Website",
+    image: [snackSociety],
+    repo: "https://github.com/lancekian12/Food-Community",
+    demo: "https://food-community-blond.vercel.app/",
+  },
 
   // {
   //   title: "BeatSearching",
@@ -101,7 +141,7 @@ export const projects: Project[] = [
   //   platform: "Website",
   //   image: ["/images/beatsearching_picture.jpeg"],
   //   repo: "https://github.com/lancekian12/MusicStoreWebsite",
-  //   demo: "#",
+  //   demo: "",
   // },
   // {
   //   title: "Accessability",
