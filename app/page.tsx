@@ -9,6 +9,7 @@ import TechStack from "./components/TechStack";
 import Experience from "./components/Experience";
 import FeaturedProjects from "./components/FeaturedProject";
 import Footer from "./components/Footer";
+import ChatBox from "./components/Chatbox";
 
 const transition: Transition = {
   duration: 0.7,
@@ -96,6 +97,9 @@ export default function Home() {
           viewport={{ amount: 0.4 }}
         >
         </motion.div> */}
+      </div>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ChatBox />
       </div>
     </main>
   );
