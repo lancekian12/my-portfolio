@@ -9,7 +9,6 @@ import TechStack from "./components/TechStack";
 import Experience from "./components/Experience";
 import FeaturedProjects from "./components/FeaturedProject";
 import Footer from "./components/Footer";
-import ChatBox from "./components/Chatbox";
 
 const transition: Transition = {
   duration: 0.7,
