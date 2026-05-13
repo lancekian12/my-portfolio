@@ -54,7 +54,23 @@ const ChatBox: React.FC = () => {
         body: JSON.stringify({ message: trimmed }),
       });
 
-      const data: { reply?: string } = await res.json();
+      const data = await res.json();
+
+      // ✅ HANDLE API ERROR RESPONSE
+      if (!res.ok || data?.error) {
+        const errorMessage =
+          data?.error?.message || "Something went wrong. Please try again.";
+
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now() + 1,
+            role: "assistant",
+            content: errorMessage,
+          },
+        ]);
+        return;
+      }
 
       setMessages((prev) => [
         ...prev,
