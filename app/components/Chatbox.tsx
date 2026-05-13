@@ -3,12 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, Send, Sparkles } from "lucide-react";
+import { ChatMessage } from "../types/data.types";
 
-type ChatMessage = {
-  id: number;
-  role: "assistant" | "user";
-  content: string;
-};
 
 const MAX_LENGTH = 200;
 

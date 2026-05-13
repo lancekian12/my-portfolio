@@ -17,3 +17,9 @@ export type Computer = {
   gpu: string;
   ram: boolean;
 };
+
+export type ChatMessage = {
+  id: number;
+  role: "assistant" | "user";
+  content: string;
+};
