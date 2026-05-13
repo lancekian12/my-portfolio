@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, Send, Sparkles } from "lucide-react";
 
@@ -15,6 +15,8 @@ const MAX_LENGTH = 200;
 const ChatBox: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -25,18 +27,58 @@ const ChatBox: React.FC = () => {
     },
   ]);
 
-  const handleSend = () => {
-    const trimmed = message.trim();
-    if (!trimmed) return;
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, open]);
 
-    const newMessage: ChatMessage = {
+  const handleSend = async () => {
+    const trimmed = message.trim();
+    if (!trimmed || loading) return;
+
+    const userMessage: ChatMessage = {
       id: Date.now(),
       role: "user",
       content: trimmed.slice(0, MAX_LENGTH),
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setMessage("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: trimmed }),
+      });
+
+      const data: { reply?: string } = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          role: "assistant",
+          content: data.reply || "No response returned.",
+        },
+      ]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          role: "assistant",
+          content:
+            error instanceof Error
+              ? error.message
+              : "Sorry, something went wrong. Please try again.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,7 +95,6 @@ const ChatBox: React.FC = () => {
 
           <div className="flex flex-col items-start leading-tight">
             <span className="text-sm font-semibold">Chat with Kian</span>
-
             <span className="text-xs text-slate-400 dark:text-slate-600">
               Ask me anything
             </span>
@@ -95,19 +136,17 @@ const ChatBox: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4">
             <div className="space-y-4">
               {messages.map((msg) => (
                 <div key={msg.id}>
-
                   <div
                     className={`flex items-start gap-3 ${
                       msg.role === "user" ? "justify-end" : "justify-start"
                     }`}
                   >
                     {msg.role === "assistant" && (
-                      <div className="h-8 w-8 shrink-0 mt-1 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
+                      <div className="mt-1 h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
                         <Image
                           src="/images/kian3.jpg"
                           alt="Kian"
@@ -119,7 +158,7 @@ const ChatBox: React.FC = () => {
                     )}
 
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed bg- ${
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                         msg.role === "user"
                           ? "bg-black text-white dark:bg-white dark:text-black"
                           : "bg-slate-100 text-slate-800 dark:bg-[#020618] dark:text-slate-200"
@@ -130,10 +169,53 @@ const ChatBox: React.FC = () => {
                   </div>
                 </div>
               ))}
+
+              {loading && (
+                <div className="flex items-start gap-3 justify-start">
+                  <div className="mt-1 h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
+                    <Image
+                      src="/images/kian3.jpg"
+                      alt="Kian"
+                      width={32}
+                      height={32}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm text-slate-500 dark:bg-[#020618] dark:text-slate-300">
+                    Typing...
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
             </div>
           </div>
+          <div className="flex justify-center gap-2 py-2">
+            <button
+              type="button"
+              onClick={() => setMessage("Tell me facts about you")}
+              className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
+            >
+              Facts about me
+            </button>
 
-          {/* Input fixed at bottom */}
+            <button
+              type="button"
+              onClick={() => setMessage("What is your email?")}
+              className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
+            >
+              My email
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setMessage("Where did you study?")}
+              className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
+            >
+              Where I studied
+            </button>
+          </div>
+
           <div className="border-t p-3 dark:border-slate-700/70">
             <div className="flex items-center gap-2 rounded-2xl border bg-white p-2 dark:bg-slate-950">
               <textarea
@@ -142,21 +224,27 @@ const ChatBox: React.FC = () => {
                   e.target.value.length <= MAX_LENGTH &&
                   setMessage(e.target.value)
                 }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
                 placeholder="Type a message..."
                 rows={2}
-                className="w-full pl-2 resize-none bg-transparent text-sm outline-none"
+                className="w-full resize-none bg-transparent pl-2 text-sm outline-none dark:text-white"
               />
 
               <button
                 onClick={handleSend}
-                disabled={!message.trim()}
-                className="rounded-xl bg-black p-2 text-white disabled:opacity-40"
+                disabled={!message.trim() || loading}
+                className="rounded-xl bg-black p-2 text-white disabled:opacity-40 dark:bg-white dark:text-black"
+                aria-label="Send message"
               >
                 <Send className="h-4 w-4" />
               </button>
             </div>
 
-            {/* COUNTER MOVED HERE (OUTSIDE INPUT BOX) */}
             <div className="mt-2 text-right text-xs text-slate-400">
               {message.length}/{MAX_LENGTH}
             </div>
