@@ -5,7 +5,6 @@ import Image from "next/image";
 import { X, Send, Sparkles } from "lucide-react";
 import { ChatMessage } from "../types/data.types";
 
-
 const MAX_LENGTH = 200;
 
 const ChatBox: React.FC = () => {
@@ -94,7 +93,7 @@ const ChatBox: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0">
       {!open ? (
         <button
           onClick={() => setOpen(true)}
@@ -113,7 +112,8 @@ const ChatBox: React.FC = () => {
           </div>
         </button>
       ) : (
-<div className="flex h-[40rem] w-[24rem] flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/95 sm:w-[28rem] lg:w-[28rem]">          <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-4 dark:border-slate-700/70">
+        <div className="flex  h-[40rem] w-[24rem] flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/95 sm:w-[28rem] lg:w-[28rem]">
+          <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-4 dark:border-slate-700/70">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
                 <Image
@@ -146,7 +146,6 @@ const ChatBox: React.FC = () => {
               <X className="h-4 w-4" />
             </button>
           </div>
-
           <div className="flex-1 overflow-y-auto px-4 py-4">
             <div className="space-y-4">
               {messages.map((msg) => (
@@ -226,7 +225,6 @@ const ChatBox: React.FC = () => {
               Where I studied
             </button>
           </div>
-
           <div className="border-t p-3 dark:border-slate-700/70">
             <div className="flex items-center gap-2 rounded-2xl border bg-white p-2 dark:bg-slate-950">
               <textarea
