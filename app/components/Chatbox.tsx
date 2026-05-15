@@ -212,10 +212,10 @@ const ChatBox: React.FC = () => {
 
               <button
                 type="button"
-                onClick={() => setMessage("What is your email?")}
+                onClick={() => setMessage("What is your contact?")}
                 className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
               >
-                My email
+                My Contact
               </button>
 
               <button
