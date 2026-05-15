@@ -113,8 +113,7 @@ const ChatBox: React.FC = () => {
           </div>
         </button>
       ) : (
-        <div className="flex h-[40rem] w-[24rem] flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/95 sm:w-[28rem] lg:w-[28rem]">
-          <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-4 dark:border-slate-700/70">
+<div className="flex h-[40rem] w-[24rem] flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/95 sm:w-[28rem] lg:w-[28rem]">          <div className="flex items-center justify-between border-b border-slate-200/70 px-4 py-4 dark:border-slate-700/70">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
                 <Image
