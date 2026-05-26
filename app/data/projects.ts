@@ -54,16 +54,16 @@ export const projects: Project[] = [
     repo: "https://github.com/lancekian12/3Y2AAPWD",
     demo: "https://accessability-web.vercel.app/",
   },
-  {
-    title: "AppointCare",
-    description:
-      "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
-    tech: ["React.js", "Node.js", "Express", "MongoDB", "Kotlin"],
-    platform: "Website & Mobile",
-    image: [appointCareImage2],
-    repo: "https://github.com/lancekian12/AppointCare-Web",
-    demo: "",
-  },
+  // {
+  //   title: "AppointCare",
+  //   description:
+  //     "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
+  //   tech: ["React.js", "Node.js", "Express", "MongoDB", "Kotlin"],
+  //   platform: "Website & Mobile",
+  //   image: [appointCareImage2],
+  //   repo: "https://github.com/lancekian12/AppointCare-Web",
+  //   demo: "",
+  // },
   {
     title: "CryptoHotel",
     description:
