@@ -2,7 +2,7 @@ export const portfolio = {
   fullname: "Lance Kian Flores",
   age: 23,
   birthday: "October 4, 2002",
-  place: "San Fabian, Pangasinan",
+  place: "Makati City",
   gmail: "lancekian12@gmail.com",
   linkedin: "https://www.linkedin.com/in/lance-kian-fangon/",
   github: "https://github.com/lancekian12",
