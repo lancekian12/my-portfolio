@@ -10,7 +10,7 @@ import studyWithMeImage2 from "public/images/studywithmeImage2.jpg";
 import studyWithMeImage3 from "public/images/studywithmeImage3.jpg";
 import eventmasterImage1 from "public/images/eventmasterImage1.png";
 import insurechainImage2 from "public/images/insurechainImage2.png";
-import appointCareImage2 from "public/images/appointcareImage2.png";
+import appointCareImage2 from "public/images/appointcareImage2.jpeg";
 import snackSociety from "public/images/snack_society.jpg";
 import mealApp1 from "public/images/mealapp_picture1.jpg";
 import mealApp2 from "public/images/mealapp_picture2.jpg";
@@ -58,11 +58,19 @@ export const projects: Project[] = [
     title: "AppointCare",
     description:
       "Doctor–patient appointment system for web and mobile. Enables scheduling and record management with React, Node.js, and Kotlin.",
-    tech: ["NextJS, NodeJS, Express, MongoDB, Zustand, Clerk, Leaflet"],
+    tech: [
+      "NextJS",
+      "NodeJS",
+      "Express",
+      "MongoDB",
+      "Zustand",
+      "Clerk",
+      "Leaflet",
+    ],
     platform: "Website",
     image: [appointCareImage2],
     repo: "https://github.com/lancekian12/Telehealth-App",
-    demo: "",
+    demo: "https://wc-telehealth-app.vercel.app/finddoctor",
   },
   {
     title: "CryptoHotel",
