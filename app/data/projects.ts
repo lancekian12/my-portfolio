@@ -15,10 +15,28 @@ import snackSociety from "public/images/snack_society.jpg";
 import mealApp1 from "public/images/mealapp_picture1.jpg";
 import mealApp2 from "public/images/mealapp_picture2.jpg";
 import mealApp3 from "public/images/mealapp_picture3.jpg";
+import missALoan1 from "public/images/missaloanImage1.jpg";
 
 import { Project } from "app/types/data.types";
 
 export const projects: Project[] = [
+  {
+    title: "Miss A Loan",
+    description:
+      "Lending management system that replaced a spreadsheet workbook for a small lending business. Handles borrowers, loans with auto-generated repayment schedules, daily collections, payment reversals, collector remittances and profit settlement, with Excel reports and a dashboard of what's due and overdue.",
+    tech: [
+      "Angular",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind",
+      "Playwright",
+    ],
+    platform: "Website",
+    image: [missALoan1],
+    repo: "",
+    demo: "",
+  },
   {
     title: "Clarify",
     description:

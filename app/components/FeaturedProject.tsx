@@ -3,7 +3,7 @@
 import { projects } from "app/data/projects";
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Github, Plus, Minus } from "lucide-react";
+import { ArrowUpRight, Github, Lock, Plus, Minus } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const INITIAL_COUNT = 5;
@@ -73,15 +73,22 @@ const FeaturedProjects: React.FC = () => {
                     <h3 className="mt-1 text-xl font-medium tracking-tight">{project.title}</h3>
                   </div>
                   <div className="flex shrink-0 items-center gap-1">
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} source code`}
-                      className="grid h-10 w-10 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                    >
-                      <Github className="h-4 w-4" aria-hidden />
-                    </a>
+                    {project.repo ? (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.title} source code`}
+                        className="grid h-10 w-10 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      >
+                        <Github className="h-4 w-4" aria-hidden />
+                      </a>
+                    ) : (
+                      <span className="inline-flex h-8 items-center gap-1.5 rounded-full border border-border px-3 text-xs text-muted-foreground">
+                        <Lock className="h-3 w-3" aria-hidden />
+                        Private client work
+                      </span>
+                    )}
                     {project.demo && (
                       <a
                         href={project.demo}

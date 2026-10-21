@@ -16,101 +16,122 @@ const Avatar = ({ size }: { size: number }) => (
   </div>
 );
 
+const GREETING: ChatMessage = {
+  id: 1,
+  role: "assistant",
+  content:
+    "Hi there! 👋 Ask me anything about me, or feel free to ask about programming, web development, or app development. I’m here to help!",
+};
+
+const SUGGESTIONS = [
+  { label: "Projects", prompt: "What projects have you built?" },
+  { label: "Experience", prompt: "Tell me about your work experience." },
+  { label: "Tech stack", prompt: "What is your tech stack?" },
+  { label: "Contact", prompt: "How can I contact you?" },
+];
+
+// Turns URLs and emails in a reply into links.
+const LINK_PATTERN = /(https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.]+)/g;
+
+function Linkified({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(LINK_PATTERN).map((part, i) => {
+        if (i % 2 === 0) return part;
+        const clean = part.replace(/[.,!?]+$/, "");
+        const trail = part.slice(clean.length);
+        const href = clean.includes("@") && !clean.startsWith("http") ? `mailto:${clean}` : clean;
+        return (
+          <React.Fragment key={i}>
+            <a
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="underline decoration-current/30 underline-offset-2 hover:decoration-current"
+            >
+              {clean}
+            </a>
+            {trail}
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+}
+
 const ChatBox: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const launcherRef = useRef<HTMLButtonElement | null>(null);
+  const wasOpen = useRef(false);
 
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: 1,
-      role: "assistant",
-      content:
-        "Hi there! 👋 Ask me anything about me, or feel free to ask about programming, web development, or app development. I’m here to help!",
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open]);
+  }, [messages, open, loading]);
 
-  const handleSend = async () => {
-    const trimmed = message.trim();
+  useEffect(() => {
+    if (open) inputRef.current?.focus();
+    else if (wasOpen.current) launcherRef.current?.focus();
+    wasOpen.current = open;
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const send = async (text: string) => {
+    const trimmed = text.trim().slice(0, MAX_LENGTH);
     if (!trimmed || loading) return;
 
-    const userMessage: ChatMessage = {
-      id: Date.now(),
-      role: "user",
-      content: trimmed.slice(0, MAX_LENGTH),
-    };
+    const userMessage: ChatMessage = { id: Date.now(), role: "user", content: trimmed };
+    const history = [...messages, userMessage];
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages(history);
     setMessage("");
     setLoading(true);
 
+    let reply = "Sorry, something went wrong. Please try again.";
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: trimmed }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: history
+            .filter((m) => m.id !== GREETING.id)
+            .map(({ role, content }) => ({ role, content })),
+        }),
       });
-
-      const data = await res.json();
-
-      // ✅ HANDLE API ERROR RESPONSE
-      if (!res.ok || data?.error) {
-        const errorMessage =
-          data?.error?.message || "Something went wrong. Please try again.";
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now() + 1,
-            role: "assistant",
-            content: errorMessage,
-          },
-        ]);
-        return;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now() + 1,
-          role: "assistant",
-          content: data.reply || "No response returned.",
-        },
-      ]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now() + 1,
-          role: "assistant",
-          content:
-            error instanceof Error
-              ? error.message
-              : "Sorry, something went wrong. Please try again.",
-        },
-      ]);
+      const data = (await res.json()) as { reply?: string };
+      if (data.reply) reply = data.reply;
+    } catch {
+      reply = "I couldn't reach the server. Check your connection and try again.";
     } finally {
+      setMessages((prev) => [...prev, { id: Date.now() + 1, role: "assistant", content: reply }]);
       setLoading(false);
+      inputRef.current?.focus();
     }
   };
 
-  const suggestions = [
-    { label: "Facts about me", prompt: "Tell me facts about you" },
-    { label: "Contact", prompt: "What is your contact?" },
-    { label: "Education", prompt: "Where did you study?" },
-  ];
+  const reset = () => {
+    setMessages([GREETING]);
+    setMessage("");
+  };
+
+  const hasConversation = messages.length > 1;
 
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {!open ? (
         <button
+          ref={launcherRef}
           onClick={() => setOpen(true)}
           className="group flex cursor-pointer items-center gap-2.5 rounded-full border border-border bg-background/80 py-1.5 pl-1.5 pr-4 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
           aria-label="Open chat"
@@ -139,6 +160,16 @@ const ChatBox: React.FC = () => {
                 </div>
               </div>
 
+              <div className="flex items-center">
+              {hasConversation && (
+                <button
+                  onClick={reset}
+                  disabled={loading}
+                  className="h-9 cursor-pointer rounded-full px-3 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40"
+                >
+                  New chat
+                </button>
+              )}
               <button
                 onClick={() => setOpen(false)}
                 className="grid h-9 w-9 cursor-pointer place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -146,6 +177,7 @@ const ChatBox: React.FC = () => {
               >
                 <X className="h-4 w-4" />
               </button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-5" aria-live="polite">
@@ -159,13 +191,13 @@ const ChatBox: React.FC = () => {
                   >
                     {msg.role === "assistant" && <Avatar size={24} />}
                     <div
-                      className={`max-w-[85%] px-4 py-2.5 text-sm leading-relaxed ${
+                      className={`max-w-[85%] whitespace-pre-wrap break-words px-4 py-2.5 text-sm leading-relaxed ${
                         msg.role === "user"
                           ? "rounded-2xl rounded-br-md bg-primary text-primary-foreground"
                           : "rounded-2xl rounded-bl-md bg-muted text-foreground"
                       }`}
                     >
-                      {msg.content}
+                      {msg.role === "assistant" ? <Linkified text={msg.content} /> : msg.content}
                     </div>
                   </div>
                 ))}
@@ -190,12 +222,13 @@ const ChatBox: React.FC = () => {
             </div>
 
             <div className="flex gap-1.5 overflow-x-auto px-4 pb-2">
-              {suggestions.map((s) => (
+              {SUGGESTIONS.map((s) => (
                 <button
                   key={s.label}
                   type="button"
-                  onClick={() => setMessage(s.prompt)}
-                  className="shrink-0 cursor-pointer rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  disabled={loading}
+                  onClick={() => send(s.prompt)}
+                  className="shrink-0 cursor-pointer rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   {s.label}
                 </button>
@@ -208,6 +241,7 @@ const ChatBox: React.FC = () => {
                   Message
                 </label>
                 <textarea
+                  ref={inputRef}
                   id="chat-input"
                   value={message}
                   onChange={(e) =>
@@ -217,7 +251,7 @@ const ChatBox: React.FC = () => {
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();
-                      handleSend();
+                      send(message);
                     }
                   }}
                   placeholder="Ask me anything…"
@@ -226,7 +260,7 @@ const ChatBox: React.FC = () => {
                 />
 
                 <button
-                  onClick={handleSend}
+                  onClick={() => send(message)}
                   disabled={!message.trim() || loading}
                   className="grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-xl bg-primary text-primary-foreground transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
                   aria-label="Send message"
