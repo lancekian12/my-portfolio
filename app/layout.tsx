@@ -1,8 +1,10 @@
 // app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import ScrollProgress from "./components/ScrollProgress";
+import ThemeColorSync from "./components/ThemeColorSync";
+import { THEME_COLORS } from "./data/theme";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +30,13 @@ export const metadata: Metadata = {
     "Full-stack developer building modern web and mobile products with clean, maintainable code.",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_COLORS.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_COLORS.dark },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -42,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
+          <ThemeColorSync />
           <ScrollProgress />
           <div className="page-glow pointer-events-none absolute inset-x-0 top-0 h-[480px]" aria-hidden />
           {children}
