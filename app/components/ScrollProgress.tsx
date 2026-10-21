@@ -10,7 +10,7 @@ const ScrollProgress: React.FC = () => {
   return (
     <motion.div
       aria-hidden
-      className="fixed inset-x-0 top-0 z-50 h-[2px] origin-left bg-foreground/80"
+      className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left bg-foreground dark:h-[2px] dark:bg-foreground/80"
       style={{ scaleX }}
     />
   );

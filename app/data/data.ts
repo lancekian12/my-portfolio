@@ -9,6 +9,7 @@ export const frontend: Language = [
   "Bulma",
   "React.js",
   "Next.js",
+  "Angular",
   "Dart",
   "Flutter",
   "Typescript",
@@ -27,6 +28,8 @@ export const backend: Language = [
   "PostgreSQL",
   "MySQL",
   "MongoDB",
+  "Supabase",
+  "Clerk",
 ];
 
 export const devops: Language = [
@@ -34,6 +37,7 @@ export const devops: Language = [
   "GitHub",
   "Figma",
   "Docker",
+  "Playwright",
   "Slack",
   "Trello",
   "Netlify",

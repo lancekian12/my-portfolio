@@ -6,6 +6,7 @@ import SectionHeading from "./SectionHeading";
 const stack = [
   "React",
   "Next.js",
+  "Angular",
   "TypeScript",
   "Node.js",
   "Dart",
