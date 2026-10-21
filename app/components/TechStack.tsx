@@ -1,45 +1,44 @@
 import React from "react";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 const stack = [
   "React",
+  "Next.js",
   "TypeScript",
-  "NodeJs",
+  "Node.js",
   "Dart",
   "Flutter",
   "Python",
 ];
 
 const TechStack: React.FC = () => (
-  <section className="text-center space-y-8">
-    
-    <h2 className="text-xs uppercase tracking-[0.35em] text-slate-400 dark:text-slate-500 font-semibold">
-      Tech Stack
-    </h2>
+  <section>
+    <SectionHeading
+      index="03"
+      title="Stack"
+      aside={
+        <Link
+          href="/tech"
+          className="group inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+        >
+          All tools
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+        </Link>
+      }
+    />
 
-    <div className="flex flex-wrap justify-center gap-3">
+    <ul className="flex flex-wrap gap-2">
       {stack.map((tech) => (
-        <span
+        <li
           key={tech}
-          className="text-sm px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 
-          text-slate-600 dark:text-slate-300 
-          bg-white dark:bg-slate-900/40
-          hover:border-slate-400 dark:hover:border-slate-600
-          transition-colors"
+          className="rounded-full border border-border bg-card/60 px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/30 hover:text-foreground"
         >
           {tech}
-        </span>
+        </li>
       ))}
-    </div>
-
-    <Link
-      href="/tech"
-      className="inline-block text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 
-      hover:text-slate-900 dark:hover:text-white transition-colors"
-    >
-      View More →
-    </Link>
-
+    </ul>
   </section>
 );
 

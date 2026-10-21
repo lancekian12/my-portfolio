@@ -1,59 +1,78 @@
 "use client";
 
 import React from "react";
-import { Mail, Link, Github } from "lucide-react";
-import ThemeToggle from "./ThemeToggle";
+import Image from "next/image";
+import { ArrowUpRight, FileText, Github, Linkedin, Mail } from "lucide-react";
+
+const socials = [
+  { href: "https://github.com/lancekian12", label: "GitHub", icon: Github },
+  { href: "https://www.linkedin.com/in/lance-kian-fangon/", label: "LinkedIn", icon: Linkedin },
+];
 
 const Header: React.FC = () => {
   return (
-    <section className="w-full px-4 flex flex-col items-center text-center space-y-8">
-      <div className="relative group">
-        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl border-2 border-slate-200 overflow-hidden bg-white shadow-sm">
-          <img
+    <section id="top" className="pt-16 md:pt-24">
+      <div className="flex items-center gap-4">
+        <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-border">
+          <Image
             src="/images/kian3.jpg"
-            alt="Lance Kian Flores profile"
-            className="w-full h-full object-cover"
+            alt="Portrait of Lance Kian Flores"
+            fill
+            sizes="56px"
+            priority
+            className="object-cover"
           />
         </div>
-      </div>
-
-      <div className="space-y-3">
-        <div className="flex items-center justify-center gap-3 flex-nowrap">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-slate-100 whitespace-nowrap">
-            Lance Kian Flores
-          </h1>
-
-          <div className="flex-shrink-0">
-            <ThemeToggle />
-          </div>
+        <div className="flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs text-muted-foreground">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+          </span>
+          Available for work
         </div>
-
-        <p className="text-lg md:text-xl text-slate-700 dark:text-slate-500 font-medium tracking-wide">
-          Software Developer
-        </p>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
+      <h1 className="mt-10 text-[2.75rem] font-medium leading-[1.02] tracking-[-0.04em] sm:text-6xl md:text-7xl">
+        Lance Kian Flores
+      </h1>
+      <p className="mt-5 max-w-xl text-xl leading-snug text-muted-foreground sm:text-2xl">
+        Software developer crafting{" "}
+        <span className="font-serif italic text-foreground">thoughtful</span> web &amp; mobile
+        products — from interface to infrastructure.
+      </p>
+
+      <div className="mt-10 flex flex-wrap items-center gap-3">
         <a
-          className="flex items-center gap-2 hover:text-primary transition-colors"
           href="mailto:lancekian12@gmail.com"
+          className="group inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98]"
         >
-          <Mail size={20} /> Email
+          <Mail className="h-4 w-4" aria-hidden />
+          Get in touch
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
         </a>
-
         <a
-          className="flex items-center gap-2 hover:text-primary transition-colors"
-          href="https://www.linkedin.com/in/lance-kian-fangon/"
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-11 items-center gap-2 rounded-full border border-border bg-card/60 px-5 text-sm font-medium transition-colors hover:bg-muted active:scale-[0.98]"
         >
-          <Link size={20} /> LinkedIn
+          <FileText className="h-4 w-4" aria-hidden />
+          Résumé
         </a>
-
-        <a
-          className="flex items-center gap-2 hover:text-primary transition-colors"
-          href="https://github.com/lancekian12"
-        >
-          <Github size={20} /> GitHub
-        </a>
+        <div className="ml-1 flex items-center gap-1">
+          {socials.map(({ href, label, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="grid h-11 w-11 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <Icon className="h-[18px] w-[18px]" aria-hidden />
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

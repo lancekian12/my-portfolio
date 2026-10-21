@@ -2,10 +2,19 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { X, Send, Sparkles } from "lucide-react";
+import { X, ArrowUp, Sparkles } from "lucide-react";
 import { ChatMessage } from "../types/data.types";
 
 const MAX_LENGTH = 200;
+
+const Avatar = ({ size }: { size: number }) => (
+  <div
+    className="relative shrink-0 overflow-hidden rounded-full ring-1 ring-border"
+    style={{ width: size, height: size }}
+  >
+    <Image src="/images/kian3.jpg" alt="" fill sizes={`${size}px`} className="object-cover" />
+  </div>
+);
 
 const ChatBox: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -92,108 +101,86 @@ const ChatBox: React.FC = () => {
     }
   };
 
+  const suggestions = [
+    { label: "Facts about me", prompt: "Tell me facts about you" },
+    { label: "Contact", prompt: "What is your contact?" },
+    { label: "Education", prompt: "Where did you study?" },
+  ];
+
   return (
-      <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-5 right-5 z-50">
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="group flex items-center gap-3 rounded-full border border-white/10 bg-black px-4 py-3 text-white shadow-2xl transition-all duration-300 hover:scale-[1.03] hover:bg-slate-900 dark:bg-white dark:text-black dark:hover:bg-slate-200"
+          className="group flex cursor-pointer items-center gap-2.5 rounded-full border border-border bg-background/80 py-1.5 pl-1.5 pr-4 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.3)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
           aria-label="Open chat"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-black dark:bg-black dark:text-white">
-            <Sparkles className="h-5 w-5" />
+          <div className="grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground">
+            <Sparkles className="h-4 w-4" aria-hidden />
           </div>
-
-          <div className="flex flex-col items-start leading-tight">
-            <span className="text-sm font-semibold">Chat with Kian</span>
-            <span className="text-xs text-slate-400 dark:text-slate-600">
-              Ask me anything
-            </span>
-          </div>
+          <span className="text-sm font-medium">Ask Kian</span>
         </button>
       ) : (
-        <div className="fixed bottom-4 left-1/2 z-50 w-[calc(100vw-2rem)] -translate-x-1/2 sm:left-auto sm:right-4 sm:translate-x-0 sm:w-[28rem]">
-          <div className="flex h-[40rem] w-full flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-2xl backdrop-blur-md dark:border-slate-700/70 dark:bg-slate-900/95">
-            <div className="flex items-center w-full justify-between border-b border-slate-200/70 px-4 py-4 dark:border-slate-700/70">
+        <div
+          role="dialog"
+          aria-label="Chat with Kian"
+          className="fixed bottom-4 left-1/2 z-50 w-[calc(100vw-2rem)] -translate-x-1/2 animate-in fade-in slide-in-from-bottom-4 duration-300 sm:left-auto sm:right-5 sm:w-[24rem] sm:translate-x-0"
+        >
+          <div className="flex h-[min(36rem,calc(100dvh-2rem))] w-full flex-col overflow-hidden rounded-3xl border border-border bg-background/95 shadow-[0_24px_80px_-20px_rgb(0_0_0/0.4)] backdrop-blur-xl">
+            <div className="flex w-full items-center justify-between border-b border-border px-5 py-4">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
-                  <Image
-                    src="/images/kian3.jpg"
-                    alt="Kian"
-                    width={40}
-                    height={40}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
+                <Avatar size={36} />
                 <div>
-                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
-                    Chat with Kian
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500" />
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Online
-                    </p>
+                  <h3 className="text-sm font-medium leading-tight">Kian&apos;s assistant</h3>
+                  <div className="mt-0.5 flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden />
+                    <p className="text-xs text-muted-foreground">Online</p>
                   </div>
                 </div>
               </div>
 
               <button
                 onClick={() => setOpen(false)}
-                className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                className="grid h-9 w-9 cursor-pointer place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
+
+            <div className="flex-1 overflow-y-auto px-5 py-5" aria-live="polite">
               <div className="space-y-4">
                 {messages.map((msg) => (
-                  <div key={msg.id}>
+                  <div
+                    key={msg.id}
+                    className={`flex items-end gap-2 ${
+                      msg.role === "user" ? "justify-end" : "justify-start"
+                    }`}
+                  >
+                    {msg.role === "assistant" && <Avatar size={24} />}
                     <div
-                      className={`flex items-start gap-3 ${
-                        msg.role === "user" ? "justify-end" : "justify-start"
+                      className={`max-w-[85%] px-4 py-2.5 text-sm leading-relaxed ${
+                        msg.role === "user"
+                          ? "rounded-2xl rounded-br-md bg-primary text-primary-foreground"
+                          : "rounded-2xl rounded-bl-md bg-muted text-foreground"
                       }`}
                     >
-                      {msg.role === "assistant" && (
-                        <div className="mt-1 h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
-                          <Image
-                            src="/images/kian3.jpg"
-                            alt="Kian"
-                            width={32}
-                            height={32}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                      )}
-
-                      <div
-                        className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                          msg.role === "user"
-                            ? "bg-black text-white dark:bg-white dark:text-black"
-                            : "bg-slate-100 text-slate-800 dark:bg-[#020618] dark:text-slate-200"
-                        }`}
-                      >
-                        {msg.content}
-                      </div>
+                      {msg.content}
                     </div>
                   </div>
                 ))}
 
                 {loading && (
-                  <div className="flex items-start gap-3 justify-start">
-                    <div className="mt-1 h-8 w-8 shrink-0 overflow-hidden rounded-sm border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
-                      <Image
-                        src="/images/kian3.jpg"
-                        alt="Kian"
-                        width={32}
-                        height={32}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="rounded-2xl bg-slate-100 px-4 py-3 text-sm text-slate-500 dark:bg-[#020618] dark:text-slate-300">
-                      Typing...
+                  <div className="flex items-end gap-2">
+                    <Avatar size={24} />
+                    <div className="flex gap-1 rounded-2xl rounded-bl-md bg-muted px-4 py-3.5" aria-label="Typing">
+                      {[0, 150, 300].map((d) => (
+                        <span
+                          key={d}
+                          className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground"
+                          style={{ animationDelay: `${d}ms` }}
+                        />
+                      ))}
                     </div>
                   </div>
                 )}
@@ -201,34 +188,27 @@ const ChatBox: React.FC = () => {
                 <div ref={messagesEndRef} />
               </div>
             </div>
-            <div className="flex justify-center gap-2 py-2">
-              <button
-                type="button"
-                onClick={() => setMessage("Tell me facts about you")}
-                className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
-              >
-                Facts about me
-              </button>
 
-              <button
-                type="button"
-                onClick={() => setMessage("What is your contact?")}
-                className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
-              >
-                My Contact
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setMessage("Where did you study?")}
-                className="rounded-full bg-white/60 px-3 py-1 text-xs text-slate-800 shadow-sm backdrop-blur-md transition-all hover:bg-white hover:shadow-md hover:scale-[1.05] dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/20"
-              >
-                Where I studied
-              </button>
+            <div className="flex gap-1.5 overflow-x-auto px-4 pb-2">
+              {suggestions.map((s) => (
+                <button
+                  key={s.label}
+                  type="button"
+                  onClick={() => setMessage(s.prompt)}
+                  className="shrink-0 cursor-pointer rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
-            <div className="border-t p-3 dark:border-slate-700/70">
-              <div className="flex items-center gap-2 rounded-2xl border bg-white p-2 dark:bg-slate-950">
+
+            <div className="p-3 pt-1">
+              <div className="flex items-end gap-2 rounded-2xl border border-border bg-card p-2 transition-colors focus-within:border-foreground/30">
+                <label htmlFor="chat-input" className="sr-only">
+                  Message
+                </label>
                 <textarea
+                  id="chat-input"
                   value={message}
                   onChange={(e) =>
                     e.target.value.length <= MAX_LENGTH &&
@@ -240,22 +220,22 @@ const ChatBox: React.FC = () => {
                       handleSend();
                     }
                   }}
-                  placeholder="Type a message..."
-                  rows={2}
-                  className="w-full resize-none bg-transparent pl-2 text-sm outline-none dark:text-white"
+                  placeholder="Ask me anything…"
+                  rows={1}
+                  className="max-h-24 min-h-9 w-full resize-none bg-transparent px-2 py-2 text-base outline-none placeholder:text-muted-foreground focus-visible:outline-none sm:text-sm"
                 />
 
                 <button
                   onClick={handleSend}
                   disabled={!message.trim() || loading}
-                  className="rounded-xl bg-black p-2 text-white disabled:opacity-40 dark:bg-white dark:text-black"
+                  className="grid h-9 w-9 shrink-0 cursor-pointer place-items-center rounded-xl bg-primary text-primary-foreground transition-opacity disabled:cursor-not-allowed disabled:opacity-30"
                   aria-label="Send message"
                 >
-                  <Send className="h-4 w-4" />
+                  <ArrowUp className="h-4 w-4" />
                 </button>
               </div>
 
-              <div className="mt-2 text-right text-xs text-slate-400">
+              <div className="mt-1.5 px-1 text-right font-mono text-[10px] text-muted-foreground">
                 {message.length}/{MAX_LENGTH}
               </div>
             </div>

@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import SectionHeading from "./SectionHeading";
 
 type Contribution = {
   date: string; 
@@ -33,11 +34,11 @@ const GithubContributions = ({
   const [legendPos, setLegendPos] = useState({ left: 0, top: 0 });
 
   const colors = [
-    "bg-slate-100 dark:bg-slate-800",
-    "bg-slate-300 dark:bg-slate-700",
-    "bg-slate-400 dark:bg-slate-600",
-    "bg-slate-600 dark:bg-slate-400",
-    "bg-slate-900 dark:bg-slate-100",
+    "bg-foreground/[0.06]",
+    "bg-foreground/25",
+    "bg-foreground/45",
+    "bg-foreground/70",
+    "bg-foreground",
   ];
 
   // today in UTC ISO
@@ -271,26 +272,36 @@ const GithubContributions = ({
   }, [legendSize.w, legendSize.h, weeks]);
 
   if (loading)
-    return <div className="text-sm text-slate-400">Loading contributions…</div>;
+    return (
+      <section>
+        <SectionHeading index="05" title="Activity" />
+        <div className="h-[180px] animate-pulse rounded-2xl border border-border bg-muted" />
+      </section>
+    );
   if (weeks.length === 0)
-    return <div className="text-sm text-slate-400">No contribution data.</div>;
+    return (
+      <section>
+        <SectionHeading index="05" title="Activity" />
+        <p className="text-sm text-muted-foreground">No contribution data.</p>
+      </section>
+    );
 
   const assumedColFull = colFullPx ?? 16;
   const contentWidthPx = weeks.length * assumedColFull;
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xs uppercase tracking-wider text-slate-400 font-bold">
-          GitHub Contributions
-        </h2>
-        <div className="text-sm text-slate-500">
-          <span className="font-semibold text-xs sm:text-sm">{total}</span>{" "}
-          <span className="font-semibold text-xs sm:text-sm">contributions in the last year</span>
-        </div>
-      </div>
+    <section>
+      <SectionHeading
+        index="05"
+        title="Activity"
+        aside={
+          <span className="font-mono text-xs text-muted-foreground">
+            {total?.toLocaleString()} contributions
+          </span>
+        }
+      />
 
-      <div className="bg-white dark:bg-slate-900/40 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+      <div className="bg-card p-4 sm:p-5 rounded-2xl border border-border">
         <div
           ref={outerScrollRef}
           className="overflow-x-auto -mx-4 px-4 pb-8 relative"
@@ -319,7 +330,7 @@ const GithubContributions = ({
                       className="h-4 w-[1px] flex items-start justify-center"
                     >
                       {label ? (
-                        <div className="text-[10px] text-slate-400 translate-x-10">
+                        <div className="text-[10px] text-muted-foreground translate-x-10">
                           {label.text}
                         </div>
                       ) : (
@@ -332,7 +343,7 @@ const GithubContributions = ({
             </div>
 
             <div className="flex items-start gap-0 mt-1">
-              <div className="w-5 flex flex-col justify-between text-[10px] text-slate-400">
+              <div className="w-5 flex flex-col justify-between text-[10px] text-muted-foreground">
                 <div style={{ height: "0.9rem" }} />
                 <div>Mon</div>
                 <div style={{ height: "0.45rem" }} />
@@ -361,7 +372,7 @@ const GithubContributions = ({
                         return (
                           <div
                             key={key}
-                            className="w-3 h-3 rounded-sm bg-transparent contrib-cell"
+                            className="w-3 h-3 rounded-[3px] bg-transparent contrib-cell"
                           />
                         );
                       }
@@ -370,7 +381,7 @@ const GithubContributions = ({
                       return (
                         <div
                           key={key}
-                          className={`w-3 h-3 rounded-sm contrib-cell ${colorClass} ${isToday ? "ring-1 ring-offset-1 ring-sky-400 dark:ring-sky-300" : ""}`}
+                          className={`w-3 h-3 rounded-[3px] contrib-cell ${colorClass} ${isToday ? "ring-1 ring-offset-1 ring-offset-card ring-foreground" : ""}`}
                           title={`${cell.count} contributions on ${cell.date}`}
                         />
                       );
@@ -392,7 +403,7 @@ const GithubContributions = ({
             }}
           >
             <div className="flex flex-col items-start justify-end pb-1">
-              <div className="flex items-center gap-2 text-[12px] text-slate-400 font-medium whitespace-nowrap">
+              <div className="flex items-center gap-2 text-[12px] text-muted-foreground font-medium whitespace-nowrap">
                 <span className="hidden sm:inline">Less</span>
                 <div className="flex items-center gap-1">
                   {colors.map((c, i) => (
@@ -411,7 +422,7 @@ const GithubContributions = ({
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

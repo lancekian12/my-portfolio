@@ -1,17 +1,22 @@
 import React from 'react'
+import SectionHeading from './SectionHeading'
 
 const AboutUs: React.FC = () => (
-  <section className="text-center max-w-2xl mx-auto space-y-4 px-4">
-    <h2 className="text-xs uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 font-bold">
-      About
-    </h2>
+  <section id="about">
+    <SectionHeading index="01" title="About" />
 
-    <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-      I am a full-stack developer passionate about building modern web applications from
-      frontend interfaces to backend systems. I enjoy writing clean, maintainable code
-      and creating user-friendly solutions using modern technologies. My goal is to
-      develop efficient, scalable applications that solve real-world problems.
-    </p>
+    <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+      <p>
+        I&apos;m a <span className="text-foreground">full-stack developer</span> who enjoys
+        building modern applications end to end — from polished frontend interfaces to the
+        backend systems behind them.
+      </p>
+      <p>
+        I care about clean, maintainable code and user-friendly solutions. My goal is to ship
+        efficient, scalable software that solves{" "}
+        <span className="font-serif text-xl italic text-foreground">real-world</span> problems.
+      </p>
+    </div>
   </section>
 )
 
