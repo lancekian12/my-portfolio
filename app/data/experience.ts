@@ -9,7 +9,7 @@ export const experiences: ExperienceItem[] = [
   {
     company: "Boom Technologies Inc",
     role: "Fullstack Developer",
-    period: "Nov 2025 — Present",
+    period: "Nov 2025 — Mar 2026",
     description:
       "Built an AI-powered platform with 3 core AI features while leading a team of 4 developers, modernizing enterprise dashboard architectures using React and TypeScript.",
   },
