@@ -7,9 +7,11 @@ export const portfolio = {
   linkedin: "https://www.linkedin.com/in/lance-kian-fangon/",
   github: "https://github.com/lancekian12",
   availability: "Available to hire",
-  ojt: "4 months internship in BoomTech",
+  ojt: "4-month internship at Boom Technologies (Nov 2025 — Mar 2026)",
   about:
     "I am a full-stack developer passionate about building modern web applications from frontend interfaces to backend systems. I enjoy writing clean, maintainable code and creating user-friendly solutions using modern technologies. My goal is to develop efficient, scalable applications that solve real-world problems.",
   facts: ["goes to the gym", "codes every day to improve"],
   university: "PHINMA University of Pangasinan",
+  degree: "Bachelor of Science in Information Technology, Major in System Development",
+  graduated: "June 2026",
 };

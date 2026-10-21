@@ -75,7 +75,7 @@ function fallbackReply(question: string): string {
     return `You can email me at ${portfolio.gmail}, connect on LinkedIn at ${portfolio.linkedin}, or see my code at ${portfolio.github}. I'm currently ${portfolio.availability.toLowerCase()}.`;
   }
   if (has("study", "school", "university", "education", "college", "degree")) {
-    return `I study at ${portfolio.university} (2022 — 2026). I also did a ${portfolio.ojt}.`;
+    return `I graduated from ${portfolio.university} in ${portfolio.graduated} with a ${portfolio.degree}. I also did a ${portfolio.ojt}.`;
   }
   if (has("work", "experience", "job", "intern", "boom")) {
     return experiences

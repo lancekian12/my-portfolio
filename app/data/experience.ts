@@ -15,9 +15,9 @@ export const experiences: ExperienceItem[] = [
   },
   {
     company: "PHINMA University of Pangasinan",
-    role: "Senior Student",
-    period: "2022 — 2026",
+    role: "BS Information Technology, Major in System Development",
+    period: "2022 — Jun 2026",
     description:
-      "Dedicated to developing mobile and web applications. Continuously improving by building projects and learning modern technologies.",
+      "Graduated in June 2026. Built mobile and web applications throughout my studies, including the award-winning AccessAbility capstone (Best in UI/UX Design Project, 2026).",
   },
 ];
