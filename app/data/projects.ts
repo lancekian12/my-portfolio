@@ -11,7 +11,7 @@ import studyWithMeImage3 from "public/images/studywithmeImage3.jpg";
 import eventmasterImage1 from "public/images/eventmasterImage1.png";
 import insurechainImage2 from "public/images/insurechainImage2.png";
 import appointCareImage3 from "public/images/appointcareImage3.jpg";
-import snackSociety from "public/images/snack_society.jpg";
+import forkful1 from "public/images/forkfulImage1.jpg";
 import mealApp1 from "public/images/mealapp_picture1.jpg";
 import mealApp2 from "public/images/mealapp_picture2.jpg";
 import mealApp3 from "public/images/mealapp_picture3.jpg";
@@ -152,14 +152,14 @@ export const projects: Project[] = [
     demo: "",
   },
   {
-    title: "Snack Society App",
+    title: "Forkful",
     description:
-      "A modern food community web app where users can discover, share, and explore recipes from around the world. Built with Next.js and Tailwind CSS, it features a clean UI focused on browsing meals, engaging with a community of food lovers, and showcasing culinary creations in an interactive way.",
-    tech: ["NextJS", "Tailwind", "Typescript"],
+      "A community cookbook where home cooks browse, search and filter recipes, cook from an ingredient checklist, like and review dishes, and share their own recipes with a photo.",
+    tech: ["NextJS", "TypeScript", "Tailwind", "Drizzle ORM", "Turso", "Vercel Blob", "Zod"],
     platform: "Website",
-    image: [snackSociety],
+    image: [forkful1],
     repo: "https://github.com/lancekian12/Food-Community",
-    demo: "https://food-community-blond.vercel.app/",
+    demo: "https://fokful-community.vercel.app/",
   },
 
   // {

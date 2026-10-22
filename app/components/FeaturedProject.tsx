@@ -55,7 +55,8 @@ const FeaturedProjects: React.FC = () => {
                       alt={`${project.title} screenshot ${imageIndex + 1}`}
                       width={isWebsite ? 1200 : 400}
                       height={isWebsite ? 750 : 800}
-                      sizes={isWebsite ? "(min-width: 768px) 720px, 100vw" : "150px"}
+                      sizes={isWebsite ? "(min-width: 768px) 720px, 100vw" : "200px"}
+                      quality={90}
                       className={`block w-full object-cover object-top ${
                         isWebsite ? "aspect-[16/9]" : "aspect-[9/16]"
                       }`}
