@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight, Github, Plus, Minus } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
-const INITIAL_COUNT = 5;
+const INITIAL_COUNT = 6;
 
 const FeaturedProjects: React.FC = () => {
   const [showAll, setShowAll] = useState(false);

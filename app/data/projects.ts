@@ -94,6 +94,16 @@ export const projects: Project[] = [
     demo: "https://wc-telehealth-app.vercel.app/finddoctor",
   },
   {
+    title: "Forkful",
+    description:
+      "A community cookbook where home cooks browse, search and filter recipes, cook from an ingredient checklist, like and review dishes, and share their own recipes with a photo.",
+    tech: ["NextJS", "TypeScript", "Tailwind", "Drizzle ORM", "Turso", "Vercel Blob", "Zod"],
+    platform: "Website",
+    image: [forkful1],
+    repo: "https://github.com/lancekian12/Food-Community",
+    demo: "https://fokful-community.vercel.app/",
+  },
+  {
     title: "CryptoHotel",
     description:
       "A hotel booking platform with secure crypto payments. Uses Flutter, Node.js, and MongoDB to enable fast and private global transactions with MetaMask integration.",
@@ -150,16 +160,6 @@ export const projects: Project[] = [
     image: [mealApp1, mealApp2, mealApp3],
     repo: "https://github.com/lancekian12/Meals-App",
     demo: "",
-  },
-  {
-    title: "Forkful",
-    description:
-      "A community cookbook where home cooks browse, search and filter recipes, cook from an ingredient checklist, like and review dishes, and share their own recipes with a photo.",
-    tech: ["NextJS", "TypeScript", "Tailwind", "Drizzle ORM", "Turso", "Vercel Blob", "Zod"],
-    platform: "Website",
-    image: [forkful1],
-    repo: "https://github.com/lancekian12/Food-Community",
-    demo: "https://fokful-community.vercel.app/",
   },
 
   // {
